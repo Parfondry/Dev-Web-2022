@@ -1,17 +1,31 @@
 const express = require('express');
 
-const mongoose = require('mongoose');
+const mysql = require('mysql');
 
 const Image = require('./models/image');
 
 const app = express();
 
-//remplacer <password> par le mot de passe de votre compte mongodb
-mongoose.connect('mongodb+srv://louis_lombaert:<password>@cluster0.s7aaw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-  { useNewUrlParser: true,
-    useUnifiedTopology: true })
-  .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch(() => console.log('Connexion à MongoDB échouée !'));
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "yourusername",
+  password: "yourpassword"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Result: " + result);
+  });
+});
 
 app.use(express.json());
 
