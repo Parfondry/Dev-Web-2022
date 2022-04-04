@@ -11,11 +11,7 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "yourusername",
   password: "yourpassword"
-});
-
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
+  // database: nom_db
 });
 
 con.connect(function(err) {
