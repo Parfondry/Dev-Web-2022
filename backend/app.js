@@ -9,17 +9,17 @@ const app = express();
 
 var con = mysql.createConnection({
   host: "localhost",
-  user: "yourusername",
-  password: "yourpassword"
-  // database: nom_db
+  user: "root",
+  password: "password", //changer par le mot de passe
+  database: "test1"
 });
 
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
-  con.query(sql, function (err, result) {
+  con.query("SELECT * FROM etats", function (err, result) {
     if (err) throw err;
-    console.log("Result: " + result);
+    console.log(result);
   });
 });
 
