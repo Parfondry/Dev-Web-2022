@@ -11,13 +11,13 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "password", //changer par le mot de passe
-  database: "test1"
+  database: "neoart"
 });
 
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
-  con.query("SELECT * FROM etats", function (err, result) {
+  con.query("SELECT * FROM user", function (err, result) {
     if (err) throw err;
     console.log(result);
   });
@@ -51,6 +51,12 @@ app.use((req, res, next) => { //éviter les erreurs de CORS
     next();
   });
 
+  /*app.use('/api/images', (req, res, next) => {
+    Image.find()
+      .then(images => res.status(200).json(images))
+      .catch(error => res.status(400).json({ error }));
+  });*/
+  
   app.use('/api/images', (req, res, next) => {
     Image.find()
       .then(images => res.status(200).json(images))
