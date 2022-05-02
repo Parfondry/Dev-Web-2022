@@ -1,0 +1,8 @@
+#foot{
+    display: grid;
+    grid-template-columns: 10% 10% 10%;
+    align-items: start;
+    text-align: center;
+    padding-top: 1%;
+    background-color: #9995;
+}

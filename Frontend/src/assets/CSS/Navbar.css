@@ -1,0 +1,17 @@
+#navbar{
+    display: grid;
+    grid-template-columns: 10% 30% 30%;
+    align-items: start;
+    justify-content: space-between;
+    background-color: #9995;
+}
+#Logo{
+    width: 50%;
+    margin-left: 10%;
+}
+#navbar button{
+    //background-color: #9997;
+    border-radius: 5px;
+    margin: 1%;
+    height: 80%;
+}
