@@ -4,6 +4,16 @@ import './assets/CSS/Contenu.css';
         e.preventDefault()
         console.log('Pseudo :',e.target['pseudo'].value);
         console.log('mdp :',e.target['mdp'].value);
+        //pas encore testé, servira à envoyer les les données vers la db
+        /*const requestOptions = {
+            method: 'POST',
+            headers: {'Content-type': 'application/json'},
+            body: {"nickname": e.target['pseudo'].value, "PWD": e.target['mdp'].value, 
+            "Mail": e.target['Mail'].value, "Birth": e.target['Birth'].value}
+        };
+        fetch('http://localhost:8080/user', requestOptions)
+            .then(response => response.json())
+            .then(data => this.setState({postId: data.id}));*/
     }
 
   function Inscription(){

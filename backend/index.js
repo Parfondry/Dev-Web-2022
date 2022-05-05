@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 8080;
 const ImagesRouter = require("./routes/Image");
 const UserRouter = require("./routes/User");
 const ReactionRouter = require("./routes/Reaction");
@@ -15,6 +15,10 @@ app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
 
+app.post("/post", (req, res) =>{ //test de connexion backend/frontend
+  console.log("connected to React");
+  res.redirect("/"); // redirige vers la racine du site 
+})
 
 app.use("/Image", ImagesRouter);
 
