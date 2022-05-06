@@ -3,7 +3,7 @@ const config = {
       /* don't expose password or any sensitive info, done only for demo */
       host: "db4free.net",
       user: "louislombaert",
-      password: "Issou_2014",
+      password: "password",
       database: "neoart",
     },
     listPerPage: 10,
