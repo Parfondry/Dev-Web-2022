@@ -4,6 +4,7 @@ const port = 8080;
 const ImagesRouter = require("./routes/Image");
 const UserRouter = require("./routes/User");
 const ReactionRouter = require("./routes/Reaction");
+const CommentRouter = require("./routes/Comment");
 
 app.use((req, res, next) => { //!!!DOIT NORMALEMENT VENIR AVANT LES AUTRES ROUTES
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -32,6 +33,8 @@ app.use("/Image", ImagesRouter);
 app.use("/User", UserRouter);
 
 app.use("/Reaction", ReactionRouter);
+
+app.use("/Comment", CommentRouter);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {

@@ -1,7 +1,7 @@
 import './assets/CSS/Contenu.css';
 
     function handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
         var self = this;
         console.log('Pseudo :',e.target['pseudo'].value);
         console.log('mdp :',e.target['mdp'].value);
