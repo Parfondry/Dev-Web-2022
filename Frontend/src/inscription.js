@@ -27,18 +27,18 @@ import './assets/CSS/Contenu.css';
     }
 
     //requette get, pas encore fonctionelle
-    /*function handleSubmitGet(e){
+    function handleSubmitGet(e){
         e.preventDefault()
             // GET request using fetch inside useEffect React hook
-            fetch('http://localhost:8080/user', {
+            /*fetch('http://localhost:8080/user', {
                 method: 'GET',
                 headers: new Headers(),
                 mode: 'cors',
                 cache: 'default'
             });
-        
+        */
         // empty dependency array means this effect will only run once (like componentDidMount in classes)
-    }*/
+    }
   function Inscription(){
     return(
         <div>

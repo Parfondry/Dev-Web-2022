@@ -2,16 +2,16 @@ import React, {useState, useEffect} from "react";
 
 function Comments(){
     //const [comments, setComments] = useState();
-
+    let comments;
    // useEffect(() => {
-        fetch("http://localhost:3000/Comment").then(res => {
+        fetch("http://localhost:8080/Comment").then(res => {
             if(res.ok) {
-                console.log(res.json())
                 return res.json()
             }
-        })//.then(jsonRes => setComments(jsonRes.data))
-  //  })
-    //console.log(comments);
+        }).then(jsonRes => comments = "jsonRes");
+    console.log(comments);
+    // })
+   // console.log(comments);
    // return (<div>{comments}</div>)
 }
 
