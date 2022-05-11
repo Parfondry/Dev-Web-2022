@@ -1,11 +1,16 @@
 import './assets/CSS/index.css';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-import base from "./home";
+import App from "./App";
 import reportWebVitals from './reportWebVitals';
+import ReactDOM from "react-dom";
+import React from "react";
 
 
-base();
+ReactDOM.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+    document.getElementById('root')
+);
 
 reportWebVitals();
