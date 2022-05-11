@@ -5,7 +5,7 @@ const config = require('../config');
 async function getComment(page = 1){
     const offset = helper.getOffset(page, config.listPerPage);
     const rows = await db.query(
-        `SELECT Comment 
+        `SELECT id,Comment 
     FROM Comment LIMIT ${offset},${config.listPerPage}`
     );
     const data = helper.emptyOrRows(rows);

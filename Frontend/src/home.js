@@ -4,6 +4,7 @@ import './assets/CSS/index.css';
 import App from './App';
 import Navbar from './Navbar';
 import Footer from "./footer";
+import Comments from "./getComment";
 
 import reportWebVitals from './reportWebVitals';
 import Contenu from './Contenu';
@@ -17,6 +18,12 @@ function base() {
             <Footer/>
         </React.StrictMode>,
         document.getElementById('root')
+    );
+    ReactDOM.render(
+        <React.StrictMode>
+            <Comments/>
+        </React.StrictMode>,
+        document.getElementById('com')
     );
 }
 // If you want to start measuring performance in your app, pass a function

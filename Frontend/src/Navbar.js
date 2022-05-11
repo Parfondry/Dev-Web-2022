@@ -5,7 +5,7 @@ import logIn from "./PageConnexion";
 import Button from 'react-bootstrap/Button';
 import base from "./home";
 import loupe from './assets/images/loupe.png';
-import Comments from './getComment'
+//import Comments from './getComment'
 
     function signUpP() {
         signUp();
@@ -19,7 +19,7 @@ import Comments from './getComment'
     function recherche(val){
         val.preventDefault();
         if (val.target['searchBar'].value !== '') {
-            console.log(Comments());
+            //console.log(Comments());
             //val.target['searchBar'].value
         }
     }
