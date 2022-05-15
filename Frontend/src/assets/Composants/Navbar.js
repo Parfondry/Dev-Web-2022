@@ -30,7 +30,7 @@ import { NavLink } from "react-router-dom";
             <div>
                 <Button id="Profil" variant='dark'><NavLink to={"/inscription"}>Inscription</NavLink></Button>
                 <Button id="Profil" variant='dark'><NavLink to={"/connexion"}>Connexion</NavLink></Button>
-                <Button id="Profil" variant='dark'><NavLink to={"/"}>Profil</NavLink></Button>
+                <Button id="Profil" variant='dark'><NavLink to={"/Profil"}>Profil</NavLink></Button>
             </div>
         </div>
     );

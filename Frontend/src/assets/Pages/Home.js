@@ -3,11 +3,15 @@ import footer from '../Composants/footer';
 import Navbar from '../Composants/Navbar';
 import image from '../images/image.png';
 import Comments from '../Composants/getComment';
+import UploadImage from '../Composants/upload_image';
 
 function Home() {
     return(
         <div>
             <Navbar/>
+
+            <UploadImage />
+
             <div id='Contenu'>
                 <h3>Pseudo</h3>
                 <img id='image' src={image} className="image-logo" alt="image" />
