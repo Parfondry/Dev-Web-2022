@@ -5,6 +5,7 @@ const ImagesRouter = require("./routes/Image");
 const UserRouter = require("./routes/User");
 const ReactionRouter = require("./routes/Reaction");
 const CommentRouter = require("./routes/Comment");
+const DescRouter = require("./routes/Description");
 
 app.use((req, res, next) => { //!!!DOIT NORMALEMENT VENIR AVANT LES AUTRES ROUTES
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -35,6 +36,8 @@ app.use("/User", UserRouter);
 app.use("/Reaction", ReactionRouter);
 
 app.use("/Comment", CommentRouter);
+
+app.use("/Desc", DescRouter);
 
 /* Error handler middleware */
 app.use((err, req, res, next) => {

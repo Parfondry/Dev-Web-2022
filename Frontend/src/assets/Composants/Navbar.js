@@ -3,13 +3,27 @@ import logo from '../images/logo.png';
 import Button from 'react-bootstrap/Button';
 import loupe from '../images/loupe.png';
 import { NavLink } from "react-router-dom";
-//import Comments from './getComment'
+import axios from 'axios'
 
-    function recherche(val){
+    async function Recherche(val){
         val.preventDefault();
+        let Desc = [];
+        let ImgId = [];
         if (val.target['searchBar'].value !== '') {
-            //console.log(Comments());
-            //val.target['searchBar'].value
+             await axios
+                .get("http://localhost:8080/Desc")
+                .then(res => Desc = res.data.data);
+             if (Desc.length !=0) {
+                 console.log(Desc);
+                 for (let i = 0; i < Desc.length; i++) {
+                     let mots = val.target['searchBar'].value.split(' ')
+                     if (mots.includes(Desc[i].Desc)) {
+                         ImgId[i] = Desc[i].id;
+                     }
+                 }
+                 console.log(ImgId);
+             }
+             return ImgId; // deuxieme fonction recupere et fait l'affichage
         }
     }
 
@@ -21,7 +35,7 @@ import { NavLink } from "react-router-dom";
             </div>
 
             <div className="search-box">
-                <form id='searching' onSubmit={recherche}>
+                <form id='searching' onSubmit={Recherche}>
                     <button className="btn-search"><img id='Loupe' alt='Loupe searchbar' src={loupe}></img></button>
                     <input name='searchBar' type="text" className="input-search" placeholder="Recherche..."/>
                 </form>
