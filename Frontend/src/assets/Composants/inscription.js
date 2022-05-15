@@ -1,4 +1,6 @@
+import React, {useState, useEffect} from "react";
 import '../CSS/Contenu.css';
+import axios from "axios";
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -26,19 +28,25 @@ import '../CSS/Contenu.css';
             });
     }
 
-    //requette get, pas encore fonctionelle
-    function handleSubmitGet(e){
-        e.preventDefault()
-            // GET request using fetch inside useEffect React hook
-            /*fetch('http://localhost:8080/user', {
-                method: 'GET',
-                headers: new Headers(),
-                mode: 'cors',
-                cache: 'default'
-            });
-        */
+    //requette get, (pour afficher tous les users) pas encore fonctionelle
+    async function HandleSubmitGet(){
+        //e.preventDefault();
+        //console.log('ok1');
+        //const [Users, setUser] =  useState([]); //problème ici
+        //console.log('ok');
+        let Users
+        await axios
+            .get("http://localhost:8080/user")
+            .then(res => Users = res.data.data);
+        console.log('ok');
+        if (Users.length != 0){
+            console.log(Users);
+        }
+        return (<div>{Users.length !=0 && Users.map(user => <li id={user.id} key={user.id}>{user.nickname}</li>)}</div>);
+        console.log(Users);
         // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }
+
   function InscriptioncC(){
     return(
         <div>
@@ -61,7 +69,7 @@ import '../CSS/Contenu.css';
                     <h2>Affichage des données</h2>
                     <p>Pseudo a afficher ici</p>
                 </fieldset>
-                <form onSubmit={handleSubmitGet}>
+                <form onSubmit={HandleSubmitGet}>
                     <fieldset>
                         <input type="submit" value="afficher users"></input>
                     </fieldset>

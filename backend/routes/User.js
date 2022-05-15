@@ -5,8 +5,22 @@ const User = require('../services/User');
 /* GET users. */
 router.get('/', async function(req, res, next) {
   try {
+    console.log(req.params);
     res.json(await User.getUser(req.query.page));
+    //console.log('ok');
   } catch (err) {
+    console.error(`Error while getting users `, err.message);
+    next(err);
+  }
+});
+
+/*GET user by nickname.*/
+router.get('/:nickname', async function(req, res, next) {
+  try {//prob: ne vient pas ici
+    res.json(await User.getUserByNickname(req.params.nickname));
+    console.log('ok1');
+    console.log(req.params);
+  } catch (err){
     console.error(`Error while getting users `, err.message);
     next(err);
   }

@@ -17,6 +17,19 @@ async function getUser(page = 1){
   }
 }
 
+async function getUserByNickname(user_nickname){
+  const rows = await db.query(
+    `SELECT *
+    FROM User
+    WHERE nickname='${user_nickname}'`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
 async function create(user){
 
   const result = await db.query(
@@ -68,6 +81,7 @@ async function remove(id){
 
 module.exports = {
   getUser,
+  getUserByNickname,
   create, 
   update,
   remove,
