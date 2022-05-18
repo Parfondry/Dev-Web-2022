@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 let user = {
     connected: false, 
-    user_id: 0
+    user_id: 0 //web token
 };
 
     async function GetNickname(password, nickname){

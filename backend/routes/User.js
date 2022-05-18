@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../services/User');
+const bcrypt = require("bcrypt");
+const JWT = require("jsonwebtoken");
+
+require("dotenv").config();
+
 
 /* GET users. */
 router.get('/', async function(req, res, next) {
@@ -29,7 +34,42 @@ router.get('/:nickname', async function(req, res, next) {
 /* POST user */
 router.post('/', async function(req, res, next) {
   try {
-    res.json(await User.create(req.body));
+    //console.log(req.body.PWD);
+    const password = req.body.PWD;
+    const nickname = req.body.nickname;
+    //console.log((await User.getUserByNickname(req.body.nickname)).data.length)
+
+    //Vérifier si le pseudo n'existe pas déjà
+    if ((await User.getUserByNickname(req.body.nickname)).data.length == 0){
+      //hasher le mdp, 10: recommandé
+      const hashedPassword = await bcrypt.hash(password, 10);
+      console.log("hashed password:", hashedPassword);
+
+      //envoyer en db
+      await User.create({
+        nickname: req.body.nickname, 
+        PWD: hashedPassword, 
+        Mail: req.body.Mail,
+        Birth: req.body.Birth
+      });
+      
+      //token d'acces
+      const accessToken = await JWT.sign(
+        {nickname},
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+          expiresIn: "24h",
+        }
+      );
+      res.json({
+        accessToken,
+      });
+    }
+    else{
+      console.error('Error this user already exist');
+      res.json({error: "This user already exist !"});
+    }
+    
   } catch (err) {
     console.error(`Error while creating user`, err.message);
     next(err);
