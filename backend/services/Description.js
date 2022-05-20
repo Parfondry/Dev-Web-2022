@@ -16,6 +16,24 @@ async function getDesc(page = 1){
     }
 }
 
+async function getDescByTags(Tags){
+    console.log(Tags,'ok');
+    const data = [];
+    for (let i=0;i<Tags.length;i++){
+    const rows = await db.query(
+        `SELECT idImage
+    FROM Tags
+    WHERE Tag='${Tags}'`
+    );
+    data[i] = helper.emptyOrRows(rows);
+    }
+    return {
+        data
+    }
+
+}
+
 module.exports = {
     getDesc,
+    getDescByTags,
 }

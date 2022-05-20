@@ -18,12 +18,12 @@ let user = {
         await axios
             .get("http://localhost:8080/user/" + nickname)
             .then(res => User = res.data.data)
-        if (User != undefined){
+        if (User !== undefined){
 
-            if (User.length == 0){
+            if (User.length === 0){
                 message = "Cet utilisateur n'existe pas !";
             }
-            else if(User[0].PWD != password){
+            else if(User[0].PWD !== password){
                 message = "Mot de pase incorect !";
             }
             else {

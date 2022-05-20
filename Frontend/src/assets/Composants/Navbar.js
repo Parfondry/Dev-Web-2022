@@ -7,22 +7,41 @@ import axios from 'axios'
 
     async function Recherche(val){
         val.preventDefault();
-        let Desc = [];
-        let ImgId = [];
+        let Desc = []; let DescTag = [];
+        let ImgId = []; let TagsName = [];
+        let tags = ['Apple','Rouge','Bleu','Sombre'];
+        let y=0; let z=0;
         if (val.target['searchBar'].value !== '') {
              await axios
                 .get("http://localhost:8080/Desc")
                 .then(res => Desc = res.data.data);
-             if (Desc.length !=0) {
+             if (Desc.length !==0) {
                  console.log(Desc);
                  for (let i = 0; i < Desc.length; i++) {
                      let mots = val.target['searchBar'].value.split(' ')
+                     if (mots.includes(tags[i])) {
+                         TagsName[z] = tags[i];
+                         z++;
+                     }
                      if (mots.includes(Desc[i].Desc)) {
-                         ImgId[i] = Desc[i].id;
+                         ImgId[y] = Desc[i].idImage;
+                         y++;
                      }
                  }
-                 console.log(ImgId);
              }
+                 await axios
+                     .get("http://localhost:8080/Desc/"+TagsName)
+                     .then(res => DescTag = res.data.data);
+                 if (DescTag.length !==0) {
+                     console.log(DescTag);
+                     for (let i = 0; i < DescTag.length; i++) {
+                             ImgId[y] = DescTag[i].idImage;
+                             y++;
+                         }
+                     }
+                 console.log(ImgId);
+                 console.log(TagsName);
+
              return ImgId; // deuxieme fonction recupere et fait l'affichage
         }
     }
