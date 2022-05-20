@@ -4,7 +4,7 @@ import imageProfile from '../images/default.png';
 import '../CSS/Navbar.css';
 
 function GetProfil(){
-    let Name = 'Nathan';
+    let Name = 'Louis';
     const [currentShow, setShow] = useState(false);
     const [currentShow2, setShow2] = useState(false);
     const [currentShow3, setShow3] = useState(false);
@@ -19,7 +19,7 @@ function GetProfil(){
         <img src={imageProfile} alt={'ProfilPicture'} height={'250px'} width={'250px'}></img>
         {console.log(Profil)}
         <form>
-            <label>Nom : {Profil[0].nickname}</label> <button onClick={(e) => {e.preventDefault(); setShow(currentShow => !currentShow)}}>Modifier</button> <br/>
+            <label>Nom : {Profil[0].Nickname}</label> <button onClick={(e) => {e.preventDefault(); setShow(currentShow => !currentShow)}}>Modifier</button> <br/>
             { currentShow ? <div><label name={'newName'} >Nouveau nom</label><input name={'newName'} type={'text'}></input></div> : null }
             <label>E-mail : {Profil[0].Mail}</label> <button onClick={(e) => {e.preventDefault(); setShow2(currentShow2 => !currentShow2)}}>Modifier</button><br/>
             { currentShow2 ? <div><label name={'newMail'} >Nouveau Mail</label><input name={'newMail'} type={'text'}></input></div> : null }
