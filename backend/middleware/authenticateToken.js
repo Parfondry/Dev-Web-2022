@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const authToken = async (req, res, next) => {
-    const token = reqheader("x-auth-token");
+    const token = req.header("x-auth-token");
 
     //si token n'est pas trouvé
     if(!token){
@@ -13,7 +13,8 @@ const authToken = async (req, res, next) => {
 
     // authentifier le token
     try{
-        const user = await jwt.verify(token, process.env.ACCES_TOKEN_SECRET);
+        const user = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        //console.log(user);
         req.user = user.nickname;
         next();
     }

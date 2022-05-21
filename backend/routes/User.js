@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../services/User');
 const bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
+const authToken = require("../middleware/authenticateToken")
 
 require("dotenv").config();
 
@@ -20,7 +21,7 @@ router.get('/', async function(req, res, next) {
 });
 
 /*GET user by nickname.*/
-router.get('/:nickname', async function(req, res, next) {
+/*router.get('/:nickname', async function(req, res, next) {
   try {//prob: ne vient pas ici
     res.json(await User.getUserByNickname(req.params.nickname));
     console.log('ok1');
@@ -29,6 +30,12 @@ router.get('/:nickname', async function(req, res, next) {
     console.error(`Error while getting users `, err.message);
     next(err);
   }
+});*/
+
+router.get("/test", authToken, (req, res) =>{
+  console.log("ok")
+  console.log(req.user);
+  res.json({ok: req.user});
 });
 
 router.post('/login', async function(req, res, next) {

@@ -8,12 +8,16 @@ function GetProfil(){
     const [currentShow, setShow] = useState(false);
     const [currentShow2, setShow2] = useState(false);
     const [currentShow3, setShow3] = useState(false);
-    const [Profil, setProfil] = useState([]);
-    useEffect(() => {
+    //const [Profil, setProfil] = useState([]);
+    const Profil = () => {
+        return JSON.parse(localStorage.getItem("user"));
+    }
+    /*useEffect(() => {
          axios
-            .get("http://localhost:8080/User/"+Name)
+            //.get("http://localhost:8080/User/"+Name)
+            .get("http://localhost:8080/User/test")
             .then(res => setProfil(res.data.data));
-    }, []);
+    }, []);*/
     if (Profil.length !== 0){
     return (<div>
         <img src={imageProfile} alt={'ProfilPicture'} height={'250px'} width={'250px'}></img>

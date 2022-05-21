@@ -22,10 +22,14 @@ import axios from "axios";
             body: JSON.stringify({nickname:e.target['pseudo'].value,PWD: e.target['mdp'].value,
             Mail:e.target['Mail'].value,Birth:e.target['Birth'].value})
         })
-            .then(response => response.json())
-            .then(function(body){
-                console.log(body);
-            });
+        .then(response => response.json())
+        .then(function(body){
+            console.log("body: ", body);
+            if (body.accessToken) {
+                localStorage.setItem("user", JSON.stringify(body));
+            }
+            return body;
+        });
     }
 
     //requette get, (pour afficher tous les users) pas encore fonctionelle
