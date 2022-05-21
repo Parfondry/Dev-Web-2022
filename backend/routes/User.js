@@ -31,12 +31,63 @@ router.get('/:nickname', async function(req, res, next) {
   }
 });
 
+router.post('/login', async function(req, res, next) {
+  try{
+    const {nickname, PWD} = req.body;
+
+    let users = await User.getUser();
+    users = users.data
+    console.log(PWD);
+    let user = users.find((user) => {
+      return user.Nickname === nickname;
+    });
+
+    console.log(user);
+    console.log(PWD);
+    console.log(user.PWD);
+    if (!user){
+      return res.status(400)
+        .json({
+          error: "User not found !"
+        });
+    }
+
+    //comparer mdp
+    let isMatch = await bcrypt.compare(PWD, user.PWD); //problème: renvoit toujours false
+    console.log(isMatch);
+
+    if (!isMatch) {
+        return res.status(401).json({
+          error:"unvalid password !"
+        });
+    }
+
+    //envoyer jwt
+    const accessToken = await JWT.sign(
+      {nickname},
+      process.env.ACCESS_TOKEN_SECRET,
+      {
+        expiresIn: "24h",
+      }
+    );
+
+    res.json({
+      accessToken,
+    });
+  }
+  catch (err){
+    console.error(`Error while login `, err.message);
+    next(err);
+  }
+})
+
 /* POST user */
 router.post('/', async function(req, res, next) {
   try {
     //console.log(req.body.PWD);
     const password = req.body.PWD;
     const nickname = req.body.nickname;
+    console.log(password);
     //console.log((await User.getUserByNickname(req.body.nickname)).data.length)
 
     //Vérifier si le pseudo n'existe pas déjà

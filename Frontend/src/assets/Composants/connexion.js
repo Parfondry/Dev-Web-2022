@@ -1,10 +1,6 @@
 import '../CSS/Contenu.css';
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-let user = {
-    connected: false, 
-    user_id: 0 //web token
-};
 
     async function GetNickname(password, nickname){
         //const [User, setUser] =  useState([]);
@@ -15,7 +11,7 @@ let user = {
                 .get("http://localhost:8080/user:nickname")
                 .then(res => setUser(res.data.data));
         }, []);*/
-        await axios
+        /*await axios
             .get("http://localhost:8080/user/" + nickname)
             .then(res => User = res.data.data)
         if (User !== undefined){
@@ -32,16 +28,26 @@ let user = {
                 message = "Connecté !"
                 console.log(user);
             }
-        } 
+        }*/ 
+        
         console.log(message);
     }
     function handleSubmit(e) {
         e.preventDefault()
         let nickname = e.target['pseudo'].value;
         let password = e.target['mdp'].value;
-        GetNickname(password, nickname);
-        console.log(user);
-        return user;
+        fetch('http://localhost:8080/user/login', {
+            method: 'POST',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({nickname: nickname, PWD: password})
+        })
+            .then(response => response.json())
+            .then(function(body){
+                console.log(body);
+            });
+        //GetNickname(password, nickname);
+        //console.log(user);
+        //return user;
         //return (<div>{Users.length !=0 && Users.map(user => <li id={user.id} nikey={user.id}>{user.nickname}</li>)}</div>);
         // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }
@@ -64,4 +70,3 @@ let user = {
   }
 
 export default ConnexionC;
-export {user};
