@@ -60,6 +60,7 @@ import { useNavigate } from 'react-router-dom';
                       localStorage.setItem("user", JSON.stringify(body));
                   }
                   navigate('/');
+                  window.location.reload();
               });
           //GetNickname(password, nickname);
           //console.log(user);
