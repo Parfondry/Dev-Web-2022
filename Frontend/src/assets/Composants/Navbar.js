@@ -3,7 +3,7 @@ import logo from '../images/logo.png';
 import Button from 'react-bootstrap/Button';
 import loupe from '../images/loupe.png';
 import { NavLink } from "react-router-dom";
-import axios from 'axios'
+import axios from 'axios';
 
     async function Recherche(val){
         val.preventDefault();
@@ -45,8 +45,12 @@ import axios from 'axios'
              return ImgId; // deuxieme fonction recupere et fait l'affichage
         }
     }
-
+    function deconnexion(){
+        localStorage.setItem("user", null);
+        this.props.history.Push('/');
+    }
   function Navbar(){
+      if (JSON.parse(localStorage.getItem("user")) === null){
     return(
         <div id='navbar'>
             <div>
@@ -55,7 +59,7 @@ import axios from 'axios'
 
             <div className="search-box">
                 <form id='searching' onSubmit={Recherche}>
-                    <button className="btn-search"><img id='Loupe' alt='Loupe searchbar' src={loupe}></img></button>
+                    <button className="btn-search"><img id='Loupe' alt='Loupe searchbar' src={loupe}/></button>
                     <input name='searchBar' type="text" className="input-search" placeholder="Recherche..."/>
                 </form>
             </div>
@@ -66,7 +70,27 @@ import axios from 'axios'
                 <Button id="Profil" variant='dark'><NavLink to={"/Profil"}>Profil</NavLink></Button>
             </div>
         </div>
-    );
+    );}
+      else {
+          return(
+              <div id='navbar'>
+                  <div>
+                      <NavLink to={"/"}><img id='Logo' src={logo} className="Navbar-logo" alt="logo" /></NavLink>
+                  </div>
+
+                  <div className="search-box">
+                      <form id='searching' onSubmit={Recherche}>
+                          <button className="btn-search"><img id='Loupe' alt='Loupe searchbar' src={loupe}/></button>
+                          <input name='searchBar' type="text" className="input-search" placeholder="Recherche..."/>
+                      </form>
+                  </div>
+
+                  <div>
+                      <Button id="Profil" variant='dark'><NavLink to={"/"} onClick={deconnexion}>Déconnexion</NavLink></Button>
+                      <Button id="Profil" variant='dark'><NavLink to={"/Profil"}>Profil</NavLink></Button>
+                  </div>
+              </div>
+          );}
   }
 
 export default Navbar;

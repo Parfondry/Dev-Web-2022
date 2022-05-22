@@ -1,6 +1,7 @@
 import '../CSS/Contenu.css';
 import React, {useState, useEffect} from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
     async function GetNickname(password, nickname){
         //const [User, setUser] =  useState([]);
@@ -32,38 +33,40 @@ import axios from "axios";
         
         console.log(message);
     }
-    function handleSubmit(e) {
-        e.preventDefault()
-        let nickname = e.target['pseudo'].value;
-        let password = e.target['mdp'].value;
-        fetch('http://localhost:8080/user/login', {
-            method: 'POST',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({nickname: nickname, PWD: password})
-        })
-            /*.then((response) =>  {
-                if(response.json().accessToken){
-                    localStorage.setItem("user", JSON.stringify(response.json()));
-                }
-                console.log(response.json().accessToken);
-                return response.json();
-            })*/
-            .then(response => response.json())
-            .then(function(body){
-                console.log("body: ", body);
-                if (body.accessToken) {
-                    localStorage.setItem("user", JSON.stringify(body));
-                }
-                return body;
-            });
-        //GetNickname(password, nickname);
-        //console.log(user);
-        //return user;
-        //return (<div>{Users.length !=0 && Users.map(user => <li id={user.id} nikey={user.id}>{user.nickname}</li>)}</div>);
-        // empty dependency array means this effect will only run once (like componentDidMount in classes)
-    }
+
 
   function ConnexionC(){
+      let navigate = useNavigate();
+      function handleSubmit(e) {
+          e.preventDefault()
+          let nickname = e.target['pseudo'].value;
+          let password = e.target['mdp'].value;
+          fetch('http://localhost:8080/user/login', {
+              method: 'POST',
+              headers: {'Content-type': 'application/json'},
+              body: JSON.stringify({nickname: nickname, PWD: password})
+          })
+              /*.then((response) =>  {
+                  if(response.json().accessToken){
+                      localStorage.setItem("user", JSON.stringify(response.json()));
+                  }
+                  console.log(response.json().accessToken);
+                  return response.json();
+              })*/
+              .then(response => response.json())
+              .then(function(body){
+                  console.log("body: ", body);
+                  if (body.accessToken) {
+                      localStorage.setItem("user", JSON.stringify(body));
+                  }
+                  navigate('/');
+              });
+          //GetNickname(password, nickname);
+          //console.log(user);
+          //return user;
+          //return (<div>{Users.length !=0 && Users.map(user => <li id={user.id} nikey={user.id}>{user.nickname}</li>)}</div>);
+          // empty dependency array means this effect will only run once (like componentDidMount in classes)
+      }
     return(
         <div>
             <form onSubmit={handleSubmit}>
@@ -71,7 +74,7 @@ import axios from "axios";
                     <label>Pseudo: </label>
                     <input type="text" name="pseudo" placeholder='Pseudo'></input><br/>
                     <label>Mot de passe: </label>
-                    <input type="text" name="mdp" placeholder='mot de passe'></input><br/>
+                    <input type="password" name="mdp" placeholder='mot de passe'></input><br/>
 
                     <input type="submit" value="Connexion"></input>
                 </fieldset>

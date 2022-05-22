@@ -32,6 +32,7 @@ router.get('/pseudo/:nickname', async function(req, res, next) {
   }
 });
 
+
 router.get("/test", authToken, (req, res) =>{
   console.log("ok")
   console.log(req.user);

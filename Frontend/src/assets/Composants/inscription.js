@@ -1,36 +1,7 @@
 import React, {useState, useEffect} from "react";
 import '../CSS/Contenu.css';
 import axios from "axios";
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        var self = this;
-        console.log('Pseudo :',e.target['pseudo'].value);
-        console.log('mdp :',e.target['mdp'].value);
-        //console.log({nickname:e.target['pseudo'].value,PWD: e.target['mdp'].value,
-        //Mail:e.target['Mail'].value,Birth:e.target['Birth'].value})
-        //pas encore testé, servira à envoyer les les données vers la db
-        /*const requestOptions = {
-            method: 'POST',
-            headers: {'Content-type': 'application/json'},
-            body: {"nickname":e.target['pseudo'].value,"PWD": e.target['mdp'].value,
-            "Mail":e.target['Mail'].value,"Birth":e.target['Birth'].value}
-        };*/
-        fetch('http://localhost:8080/user', {
-            method: 'POST',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({nickname:e.target['pseudo'].value,PWD: e.target['mdp'].value,
-            Mail:e.target['Mail'].value,Birth:e.target['Birth'].value})
-        })
-        .then(response => response.json())
-        .then(function(body){
-            console.log("body: ", body);
-            if (body.accessToken) {
-                localStorage.setItem("user", JSON.stringify(body));
-            }
-            return body;
-        });
-    }
+import { useNavigate } from 'react-router';
 
     //requette get, (pour afficher tous les users) pas encore fonctionelle
     async function HandleSubmitGet(){
@@ -52,6 +23,36 @@ import axios from "axios";
     }
 
   function InscriptioncC(){
+      let navigate = useNavigate();
+      function handleSubmit(e) {
+          e.preventDefault();
+          var self = this;
+          console.log('Pseudo :',e.target['pseudo'].value);
+          console.log('mdp :',e.target['mdp'].value);
+          //console.log({nickname:e.target['pseudo'].value,PWD: e.target['mdp'].value,
+          //Mail:e.target['Mail'].value,Birth:e.target['Birth'].value})
+          //pas encore testé, servira à envoyer les les données vers la db
+          /*const requestOptions = {
+              method: 'POST',
+              headers: {'Content-type': 'application/json'},
+              body: {"nickname":e.target['pseudo'].value,"PWD": e.target['mdp'].value,
+              "Mail":e.target['Mail'].value,"Birth":e.target['Birth'].value}
+          };*/
+          fetch('http://localhost:8080/user', {
+              method: 'POST',
+              headers: {'Content-type': 'application/json'},
+              body: JSON.stringify({nickname:e.target['pseudo'].value,PWD: e.target['mdp'].value,
+                  Mail:e.target['Mail'].value,Birth:e.target['Birth'].value})
+          })
+              .then(response => response.json())
+              .then(function(body){
+                  console.log("body: ", body);
+                  if (body.accessToken) {
+                      localStorage.setItem("user", JSON.stringify(body));
+                  }
+                  navigate('/');
+              });
+      }
     return(
         <div>
             <form onSubmit={handleSubmit}>
@@ -59,7 +60,7 @@ import axios from "axios";
                     <label>Pseudo: </label>
                     <input type="text" name="pseudo" placeholder='Pseudo'></input><br></br>
                     <label>Mot de passe: </label>
-                    <input type="text" name="mdp" placeholder='mot de passe'></input><br></br>
+                    <input type="password" name="mdp" placeholder='mot de passe'></input><br></br>
                     <label>Addresse mail: </label>
                     <input type="text" name="Mail" placeholder='Mail'></input><br></br>
                     <label>Date de naissance: </label>

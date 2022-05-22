@@ -12,37 +12,44 @@ async function GetProfil(){
     //const [Profil, setProfil] = useState([]);
     let ProfilUser
     let Profil
-    
+
     await axios
         .get("http://localhost:8080/User/test", {headers: authHeader()})
         .then(
             res => ProfilUser = res.data);
-    if (ProfilUser.length !== 0){
-        console.log(ProfilUser);
-        await axios
-        .get("http://localhost:8080/User/pseudo/" + ProfilUser.Nickname)
-        .then(
-            res => Profil = res.data.data
-        );
-        if (Profil.length !== 0){
-            console.log(Profil);
-            return (<div>
-            <img src={imageProfile} alt={'ProfilPicture'} height={'250px'} width={'250px'}></img>
-            {console.log(Profil)}
-            <form>
-                <label>Nom : {Profil[0].Nickname}</label> <button onClick={(e) => {e.preventDefault(); setShow(currentShow => !currentShow)}}>Modifier</button> <br/>
-                { currentShow ? <div><label name={'newName'} >Nouveau nom</label><input name={'newName'} type={'text'}></input></div> : null }
-                <label>E-mail : {Profil[0].Mail}</label> <button onClick={(e) => {e.preventDefault(); setShow2(currentShow2 => !currentShow2)}}>Modifier</button><br/>
-                { currentShow2 ? <div><label name={'newMail'} >Nouveau Mail</label><input name={'newMail'} type={'text'}></input></div> : null }
-                <label>mdp : ********</label> <button onClick={(e) => {e.preventDefault(); setShow3(currentShow3 => !currentShow3)}}>Modifier</button><br/>
-                { currentShow3 ? <div><label name={'newMdp'} >Nouveau mdp</label><input name={'newMdp'} type={'text'}></input></div> : null }
-            </form>
-        </div>);
+    if (JSON.parse(localStorage.getItem("user")) !== null){
+        if (ProfilUser.length !== 0){
+            console.log(ProfilUser);
+            await axios
+            .get("http://localhost:8080/User/pseudo/" + ProfilUser.Nickname)
+            .then(
+                res => Profil = res.data.data
+            );
+            if (Profil.length !== 0){
+                console.log(Profil);
+                return (<div>
+                <img src={imageProfile} alt={'ProfilPicture'} height={'250px'} width={'250px'}></img>
+                {console.log(Profil)}
+                <form>
+                    <label>Nom : {Profil[0].Nickname}</label> <button onClick={(e) => {e.preventDefault(); setShow(currentShow => !currentShow)}}>Modifier</button> <br/>
+                    { currentShow ? <div><label name={'newName'} >Nouveau nom</label><input name={'newName'} type={'text'}></input></div> : null }
+                    <label>E-mail : {Profil[0].Mail}</label> <button onClick={(e) => {e.preventDefault(); setShow2(currentShow2 => !currentShow2)}}>Modifier</button><br/>
+                    { currentShow2 ? <div><label name={'newMail'} >Nouveau Mail</label><input name={'newMail'} type={'text'}></input></div> : null }
+                    <label>mdp : ********</label> <button onClick={(e) => {e.preventDefault(); setShow3(currentShow3 => !currentShow3)}}>Modifier</button><br/>
+                    { currentShow3 ? <div><label name={'newMdp'} >Nouveau mdp</label><input name={'newMdp'} type={'text'}></input></div> : null }
+                </form>
+            </div>);
+            }
+            else {
+                return (<div>Loading</div>)
+            }
         }
+
     }
-    else {
-        return (<div>Loading</div>)
+    else{
+        return (<div>Connecter vous !</div>)
     }
 }
+
 
 export default GetProfil;
