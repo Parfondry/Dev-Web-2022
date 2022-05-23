@@ -6,13 +6,17 @@ import authHeader from "../services/auth-header";
 
 let ProfilUser = [];
 async function recup() {
-    await axios
-        .get("http://localhost:8080/User/test", {headers: authHeader()})
-        .then(
-            res => ProfilUser = res.data);
-    console.log(ProfilUser);
-    return ProfilUser;
+    if (JSON.parse(localStorage.getItem("user")) !== null){
+
+        await axios
+            .get("http://localhost:8080/User/test", {headers: authHeader()})
+            .then(
+                res => ProfilUser = res.data);
+        console.log(ProfilUser);
+        return ProfilUser;
+    }
 }
+
 recup();
 
 function GetProfil(){
