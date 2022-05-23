@@ -7,13 +7,11 @@ async function PostImage(e){
         let Image
 
         console.log(e.target['Image'].value);
-        console.log(e.target['Idreact'].value);
-        console.log(e.target['Idcom'].value);
         console.log(e.target['Iduser'].value);
-        console.log(e.target['Image'].value);
+        console.log(e.target['Description'].value);
 
         await axios
-            .post("http://localhost:8080/Image", {File:e.target['Image'].value, idReact:e.target['Idreact'].value,  idCom:e.target['Idcom'].value,  idUser:e.target['Iduser'].value,  Desc:e.target['Desc'].value});
+            .post("http://localhost:8080/Image", {File:e.target['Image'].value, idUser:e.target['Iduser'].value,  Description:e.target['Description'].value});
         console.log('ok');
         if (Image.length != 0){
             console.log(Image);
@@ -35,10 +33,8 @@ function UploadImage(){
         <div>
             <form onSubmit={PostImage}>
                 <input type="text" name="Image" placeholder="Lien de l'image"></input>
-                <input type="text" name="Idreact" placeholder="Id react"></input>
-                <input type="text" name="Idcom" placeholder="Id Com"></input>
                 <input type="text" name="Iduser" placeholder="Id de l'utilisateur"></input>
-                <input type="text" name="Desc" placeholder="Description"></input>
+                <input type="text" name="Description" placeholder="Description"></input>
 
                 <input type="submit" value="Poster cette photo"></input>
                 

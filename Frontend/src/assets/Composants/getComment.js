@@ -8,6 +8,7 @@ function Comments(){
             .get("http://localhost:8080/Comment")
             .then(res => setComments(res.data.data));
      }, []);
+
     return (<div>{Comments.length !=0 && Comments.map(comment => <li id={comment.id} key={comment.id}>{comment.Comment}</li>)}</div>);
 }
 

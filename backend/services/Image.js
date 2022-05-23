@@ -21,9 +21,9 @@ async function create(image){
 
   const result = await db.query(
      `INSERT INTO Image 
-    (File, idUser, Desc) 
+    (File, idUser, Description) 
     VALUES 
-    ('${image.File}', '${image.idUser}', '${image.Desc}')`
+    ('${image.File}', '${image.idUser}', '${image.Description}')`
   );
   let message = 'Error in creating image';
 
