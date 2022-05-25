@@ -6,7 +6,9 @@ async function getImage(page = 1){
   const offset = helper.getOffset(page, config.listPerPage);
   const rows = await db.query(
     `SELECT * 
-    FROM Image LIMIT ${offset},${config.listPerPage}`
+    FROM Image
+    JOIN User ON Image.idUser = User.id
+    LIMIT ${offset},${config.listPerPage}`
   );
   const data = helper.emptyOrRows(rows);
   const meta = {page};

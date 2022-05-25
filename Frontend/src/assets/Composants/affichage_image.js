@@ -10,10 +10,11 @@ function AffichageImage(){
             .get("http://localhost:8080/Image")
             .then(res => setImages(res.data.data));
      }, []);
+     console.log(Images);
 
      return(
         Images.map(Image => <div class='Contenu'>
-                <h3>Pseudo id {Image.idUser}</h3>
+                <h3>Pseudo id {Image.Nickname}</h3>
                 <img id='image' src={Image.File} className="image-logo" alt="image" />
                 <div id='commentaires'>
                     <h5>Commentaires</h5>
