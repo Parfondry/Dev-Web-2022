@@ -146,9 +146,9 @@ router.put('/:id', async function(req, res, next) {
 });
 
 /* DELETE programming language */
-router.delete('/:id', async function(req, res, next) {
+router.delete('/:nickname', async function(req, res, next) {
   try {
-    res.json(await User.remove(req.params.id));
+    res.json(await User.remove(req.params.nickname));
   } catch (err) {
     console.error(`Error while deleting user`, err.message);
     next(err);

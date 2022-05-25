@@ -88,6 +88,7 @@ import axios from 'axios';
                   <div>
                       <Button id="Profil" variant='dark'><NavLink to={"/"} onClick={deconnexion}>Déconnexion</NavLink></Button>
                       <Button id="Profil" variant='dark'><NavLink to={"/Profil"}>Profil</NavLink></Button>
+                      <Button id="Profil" variant='dark'><NavLink to={"/Supression"}>Supression compte</NavLink></Button>
                   </div>
               </div>
           );}

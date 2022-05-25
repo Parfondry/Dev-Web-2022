@@ -51,8 +51,8 @@ async function update(id, user){
   const result = await db.query(
     `UPDATE User 
     SET nickname="${user.nickname}", PWD=${user.PWD}, Mail=${user.Mail}, 
-    Birth=${user.Birth}
-    WHERE id=${id}` 
+    Birth='${user.Birth}'
+    WHERE id='${id}'` 
   );
 
   let message = 'Error in updating user';
@@ -64,9 +64,9 @@ async function update(id, user){
   return {message};
 }
 
-async function remove(id){
+async function remove(nickname){
   const result = await db.query(
-    `DELETE FROM User WHERE id=${id}`
+    `DELETE FROM User WHERE nickname='${nickname}'`
   );
 
   let message = 'Error in deleting programming language';
