@@ -12,4 +12,5 @@ function Comments(){
     return (<div>{Comments.length !=0 && Comments.map(comment => <li id={comment.id} key={comment.id}>{comment.Comment}</li>)}</div>);
 }
 
+
 export default Comments;
