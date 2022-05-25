@@ -46,15 +46,14 @@ async function create(user){
 
   return {message};
 }
-
+/*PWD=${user.PWD}, */
 async function update(id, user){
   const result = await db.query(
     `UPDATE User 
-    SET nickname="${user.nickname}", PWD=${user.PWD}, Mail=${user.Mail}, 
+    SET Nickname='${user.nickname}', Mail='${user.Mail}',
     Birth='${user.Birth}'
-    WHERE id='${id}'` 
+    WHERE id=${id}`
   );
-
   let message = 'Error in updating user';
 
   if (result.affectedRows) {

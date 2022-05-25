@@ -13,7 +13,7 @@ function AffichageImage(){
      console.log(Images);
 
      return(
-        Images.map(Image => <div class='Contenu'>
+        Images.map(Image => <div key={Image.id} className='Contenu'>
                 <h3>Pseudo id {Image.Nickname}</h3>
                 <img id='image' src={Image.File} className="image-logo" alt="image" />
                 <div id='commentaires'>

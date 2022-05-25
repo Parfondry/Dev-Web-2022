@@ -138,7 +138,20 @@ router.post('/', async function(req, res, next) {
 /* PUT user */
 router.put('/:id', async function(req, res, next) {
   try {
+    //console.log(req.params.id, req.body);
     res.json(await User.update(req.params.id, req.body));
+    /*
+    const nickname = req.body.nickname;
+    const accessToken = await JWT.sign(
+        {nickname},
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+          expiresIn: "24h",
+        }
+    );
+    res.json({
+      accessToken,
+    });*/
   } catch (err) {
     console.error(`Error while updating user`, err.message);
     next(err);
