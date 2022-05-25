@@ -17,6 +17,21 @@ async function getComment(page = 1){
     }
 }
 
+async function getCommentImage(page = 1){
+    const offset = helper.getOffset(page, config.listPerPage);
+    const rows = await db.query(
+        `SELECT *
+    FROM Comment JOIN User ON User.id = Comment.IdUser LIMIT ${offset},${config.listPerPage}`
+    );
+    const data = helper.emptyOrRows(rows);
+    const meta = {page};
+
+    return {
+        data,
+        meta
+    }
+}
+
 async function create(Comment){
 
     const result = await db.query(
@@ -68,6 +83,7 @@ async function remove(id){
 
 module.exports = {
     getComment,
+    getCommentImage,
     create,
     //update,
     remove,

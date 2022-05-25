@@ -68,31 +68,14 @@ function UploadImage(){
             }
         }
     
-            // let Reaction
-            // await axios
-            //     .post("http://localhost:8080/Reaction", {idUser:e.target['IdUser'].value, idImage:e.target['IdImage'].value,  React:e.target['React'].value});
-            // console.log('ok');
-            // if (Reaction.length != 0){
-            //     console.log(Reaction);
-            // }
-    
-        // console.log(e.target['Image'].value);
     }
     return(
         <div>
-            <form onSubmit={PostImage}>
+            <form id="UploadImage" onSubmit={PostImage}>
                 <input type="text" name="Image" placeholder="Lien de l'image"></input>
-                <input type="text" name="Iduser" placeholder="Id de l'utilisateur"></input>
                 <input type="text" name="Description" placeholder="Description"></input>
 
                 <input type="submit" value="Poster cette photo"></input>
-                
-                {/* <input type="text" name="IdUser" placeholder="IdUser"></input>
-                <input type="text" name="IdImage" placeholder="IdImage"></input>
-                <input type="text" name="React" placeholder="react"></input>
-
-                <input type="submit" value="Envoie cette photo"></input> */}
-
             </form>
         </div>
     );

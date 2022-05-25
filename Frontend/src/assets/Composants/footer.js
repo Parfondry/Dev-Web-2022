@@ -3,12 +3,12 @@ import React from "react";
 
 function Footer(){
     return(
-        <div id='foot'>
+        <footer id='foot'>
 
                 <p>Mentions Legal</p>
                 <p>Contact</p>
 
-        </div>
+        </footer>
     );
 }
 

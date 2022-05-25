@@ -28,3 +28,93 @@ h1,h2,h3,h4,h5,h6{
     display: block;
     margin: auto;
 }
+#Inscription, #Connexion{
+    width: 50%;
+    margin: auto;
+}
+#Inscription legend, #Connexion legend{
+    text-align: center;
+    text-decoration: underline;
+}
+#Inscription input[type=submit], #Connexion input[type=submit]{
+    border-radius: 5px;
+    background-color: rgb(39, 39, 39);
+    color: white;
+    width: 150px;
+    height: 35px;
+    display: block;
+    margin: auto;
+}
+#Inscription input[type=text], #Inscription input[type=password], #Inscription label,
+#Connexion input[type=text], #Connexion input[type=password], #Connexion label {
+    border-radius: 5px;
+    text-align: center;
+    display: block;
+    margin: auto;
+}
+#MonProfil{
+    width: 50%;
+    margin: auto;
+}
+#PhotoProfil{
+    display: block;
+    margin: auto;
+}
+#MonProfil button{
+    border-radius: 5px;
+    background-color: rgb(39, 39, 39);
+    color: white;
+    width: 150px;
+    height: 35px;
+    display: block;
+    margin: auto;
+}
+#MonProfil input[type=text], #MonProfil input[type=password], #MonProfil label{
+    border-radius: 5px;
+    text-align: center;
+    display: block;
+    margin: auto;
+    font-size: 20px;
+}
+#UploadImage{
+    background-color: #9995;
+    width: 50%;
+    display: block;
+    margin: auto;
+    border-radius: 10px;
+    margin: 10px auto;
+    padding: 5px;
+}
+#UploadImage input[type=text]{
+    border-radius: 5px;
+    text-align: center;
+    margin: auto;
+    display: block;
+}
+#UploadImage input[type=submit]{
+    border-radius: 5px;
+    background-color: rgb(39, 39, 39);
+    color: white;
+    margin: auto;
+    display: block;
+}
+#PostComment textarea{
+    border-radius: 5px;
+    text-align: center;
+    margin: auto;
+    display: block;
+    width: 75%;
+}
+#PostComment input[type=text]{
+    border-radius: 5px;
+    text-align: center;
+    margin: auto;
+    display: block;
+}
+#PostComment input[type=submit]{
+    border-radius: 5px;
+    background-color: rgb(39, 39, 39);
+    color: white;
+    margin: auto;
+    display: block;
+}

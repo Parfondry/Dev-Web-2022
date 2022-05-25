@@ -31,10 +31,21 @@ function PostComment(){
             .then(
                 res => setProfil(res.data.data));
     }, []);
+
+    const [Images, setImages] = useState([]);
+    useEffect(() => {
+        axios
+            .get("http://localhost:8080/Image")
+            .then(res => setImages(res.data.data));
+     }, []);
+     if(Images.length !== 0){
+        console.log(Images[2].id);
+     }
+
     if (JSON.parse(localStorage.getItem("user")) !== null){
         if (ProfilUser.length !== 0){
             if (Profil.length !== 0){
-                console.log(Profil);
+                // console.log(Profil);
                 IdUser = Profil[0].id;
             }
         }
@@ -52,19 +63,22 @@ function PostComment(){
                     if (IdUser){
 
                         await axios
-                        .post("http://localhost:8080/Comment", {idUser:IdUser,  idImage:e.target['IdImage'].value, Comment:e.target['NewComment'].value});
+                        .post("http://localhost:8080/Comment", {idUser:IdUser, idImage:e.target['IdImage'].value, Comment:e.target['NewComment'].value});
                         console.log('ok');
                     }
                 }
             }
         }
+        else{
+            alert("Connectez vous pour pouvoir poster un commentaire");
+        }
 
     }
     return(
         <div>
-            <form onSubmit={PostMyComment}>
+            <form id="PostComment" onSubmit={PostMyComment}>
                 <textarea name="NewComment"></textarea>
-                <input type="text" name="IdImage" placeholder="IdImage"></input>
+                <input type="text" name="IdImage" placeholder="Entrez identifiant image"></input>
                 <input type="submit" value="Poster ce commentaire"></input>
             </form>
         </div>

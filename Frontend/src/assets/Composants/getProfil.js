@@ -55,8 +55,8 @@ function GetProfil(){
         if (ProfilUser.length !== 0){
             if (Profil.length !== 0){
                 return (<div>
-                <img src={imageProfile} alt={'ProfilPicture'} height={'250px'} width={'250px'}></img>
-                <form onSubmit={ModifProfil}>
+                <img id="PhotoProfil" src={imageProfile} alt={'ProfilPicture'} height={'250px'} width={'250px'}></img>
+                <form id="MonProfil" onSubmit={ModifProfil}>
                     <label>Nom : {Profil[0].Nickname}</label> <button onClick={(e) => {e.preventDefault(); setShow(currentShow => !currentShow)}}>Modifier</button> <br/>
                     { currentShow ? <div><label name={'newName'} >Nouveau nom : </label><input name={'newName'} type={'text'} placeholder='Nom'></input></div> : null }
                     <label>E-mail : {Profil[0].Mail}</label> <button onClick={(e) => {e.preventDefault(); setShow2(currentShow2 => !currentShow2)}}>Modifier</button><br/>

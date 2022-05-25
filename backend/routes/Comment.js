@@ -12,6 +12,15 @@ router.get('/', async function(req, res, next) {
     }
 });
 
+router.get('/Image', async function(req, res, next) {
+    try {
+        res.json(await Comment.getCommentImage(req.query.page));
+    } catch (err) {
+        console.error(`Error while getting Comment `, err.message);
+        next(err);
+    }
+});
+
 /* POST Comment */
 router.post('/', async function(req, res, next) {
     try {
