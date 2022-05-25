@@ -55,8 +55,9 @@ import { useNavigate } from 'react-router';
       }
     return(
         <div>
-            <form onSubmit={handleSubmit}>
-                <fieldset><legend>Partie inscription - Test - Déplacé vers page insciption</legend>
+            <form id="Inscription" onSubmit={handleSubmit}>
+                <fieldset>
+                    <legend>Inscription</legend>
                     <label>Pseudo: </label>
                     <input type="text" name="pseudo" placeholder='Pseudo'></input><br></br>
                     <label>Mot de passe: </label>
@@ -69,7 +70,7 @@ import { useNavigate } from 'react-router';
                     <input type="submit" value="Envoyer en DB"></input>
                 </fieldset>
             </form>
-            <div>
+            {/* <div>
                 <fieldset>
                     <h2>Affichage des données</h2>
                     <p>Pseudo a afficher ici</p>
@@ -79,7 +80,7 @@ import { useNavigate } from 'react-router';
                         <input type="submit" value="afficher users"></input>
                     </fieldset>
                 </form>
-            </div>
+            </div> */}
         </div>
     );
   }

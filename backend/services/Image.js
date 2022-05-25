@@ -5,7 +5,7 @@ const config = require('../config');
 async function getImage(page = 1){
   const offset = helper.getOffset(page, config.listPerPage);
   const rows = await db.query(
-    `SELECT * 
+    `SELECT Image.id, User.Nickname, Image.File, Image.Description
     FROM Image
     JOIN User ON Image.idUser = User.id
     LIMIT ${offset},${config.listPerPage}`

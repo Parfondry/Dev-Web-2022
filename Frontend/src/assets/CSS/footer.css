@@ -6,3 +6,8 @@
     padding-top: 1%;
     background-color: #9995;
 }
+footer{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}

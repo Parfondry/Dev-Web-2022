@@ -70,8 +70,8 @@ import { useNavigate } from 'react-router-dom';
       }
     return(
         <div>
-            <form onSubmit={handleSubmit}>
-                <fieldset><legend>Partie Connexion - Test</legend>
+            <form id="Connexion" onSubmit={handleSubmit}>
+                <fieldset><legend>Connexion</legend>
                     <label>Pseudo: </label>
                     <input type="text" name="pseudo" placeholder='Pseudo'></input><br/>
                     <label>Mot de passe: </label>
