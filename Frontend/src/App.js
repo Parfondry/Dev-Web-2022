@@ -4,6 +4,7 @@ import PageInscription from "./assets/Pages/Inscription";
 import PageConnexion from "./assets/Pages/Connexion";
 import Profil from './assets/Pages/Profil';
 import Supression from './assets/Pages/Supr_compte';
+import AffichageImage2 from './assets/Composants/AffichageRecherche';
 
 function App() {
   return (

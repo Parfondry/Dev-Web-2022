@@ -5,43 +5,51 @@ import loupe from '../images/loupe.png';
 import { NavLink } from "react-router-dom";
 import axios from 'axios';
 
+    export let ImgId = [];
+    export let validate = false;
     async function Recherche(val){
         val.preventDefault();
         let Desc = []; let DescTag = [];
-        let ImgId = []; let TagsName = [];
-        let tags = ['Apple','Rouge','Bleu','Sombre'];
+        let TagsName = [];
+        let tags = ['Red','Blue'];
         let y=0; let z=0;
         if (val.target['searchBar'].value !== '') {
              await axios
                 .get("http://localhost:8080/Desc")
                 .then(res => Desc = res.data.data);
              if (Desc.length !==0) {
-                 console.log(Desc);
+                 validate = true;
                  for (let i = 0; i < Desc.length; i++) {
-                     let mots = val.target['searchBar'].value.split(' ')
+                     let mots = val.target['searchBar'].value.split(' ');
                      if (mots.includes(tags[i])) {
                          TagsName[z] = tags[i];
                          z++;
                      }
-                     if (mots.includes(Desc[i].Desc)) {
-                         ImgId[y] = Desc[i].idImage;
-                         y++;
+                     let descri = Desc[i].Description.split(' ');
+                     for (let k=0;k<descri.length;k++) {
+                         if (mots.includes(descri[k])) {
+                             if (!ImgId.includes(Desc[i].id)){
+                                 ImgId[y] = Desc[i].id;
+                                 y++;
+                             }
+                         }
                      }
                  }
              }
+
+             if(TagsName.length !== 0) {
                  await axios
-                     .get("http://localhost:8080/Desc/"+TagsName)
+                     .get("http://localhost:8080/Desc/" + TagsName)
                      .then(res => DescTag = res.data.data);
-                 if (DescTag.length !==0) {
-                     console.log(DescTag);
+                 if (DescTag.length !== 0) {
                      for (let i = 0; i < DescTag.length; i++) {
-                             ImgId[y] = DescTag[i].idImage;
+                         if (!ImgId.includes(DescTag[i][0].idImage)) {
+                             ImgId[y] = DescTag[i][0].idImage;
                              y++;
                          }
                      }
-                 console.log(ImgId);
-                 console.log(TagsName);
-
+                 }
+             }
              return ImgId; // deuxieme fonction recupere et fait l'affichage
         }
     }
@@ -49,7 +57,7 @@ import axios from 'axios';
         localStorage.setItem("user", null);
         this.props.history.Push('/');
     }
-  function Navbar(){
+  export function Navbar(){
       if (JSON.parse(localStorage.getItem("user")) === null){
     return(
         <div id='navbar'>
@@ -93,5 +101,3 @@ import axios from 'axios';
               </div>
           );}
   }
-
-export default Navbar;

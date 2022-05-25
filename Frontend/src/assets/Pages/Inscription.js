@@ -1,12 +1,12 @@
 import React from 'react';
 import Inscriptionc from '../Composants/inscription';
-import Navbar from '../Composants/Navbar';
+import * as dataNav from '../Composants/Navbar';
 import Footer from '../Composants/footer';
 
 function Inscription(){
     return(
         <div>
-            <Navbar />
+            <dataNav.Navbar />
             <Inscriptionc />
             <Footer />
         </div>

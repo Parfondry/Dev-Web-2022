@@ -1,18 +1,16 @@
 import React from 'react';
 import Footer from '../Composants/footer';
-import Navbar from '../Composants/Navbar';
+import * as dataNav from '../Composants/Navbar';
 import UploadImage from '../Composants/upload_image';
 import AffichageImage from '../Composants/affichage_image';
+import AffichageImage2 from '../Composants/AffichageRecherche';
 
 function Home() {
     return(
         <div>
-            <Navbar/>
-
+            <dataNav.Navbar/>
             <UploadImage />
-
-            <AffichageImage/>
-
+            {dataNav.validate ?  <AffichageImage2/> : <AffichageImage/>}
             <Footer/>
         </div>
     )

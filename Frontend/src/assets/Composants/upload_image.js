@@ -19,10 +19,6 @@ recup();
 
 let IdUser;
 
-let Profil = [];
-
-
-
 function UploadImage(){
     const [Profil, setProfil] = useState([]);
     useEffect(() => {

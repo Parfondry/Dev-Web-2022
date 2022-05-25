@@ -18,6 +18,23 @@ async function getImage(page = 1){
     meta
   }
 }
+async function getImageById(id){
+  let data =[];
+  let data2 = [];
+  data2 = id.split(',');
+  for (let i=0;i<data2.length;i++) {
+    const rows = await db.query(
+        `SELECT Image.id,Image.File,User.Nickname
+    FROM Image
+    JOIN User ON Image.idUser = User.id
+    WHERE Image.id='${data2[i]}'`
+    );
+    data[i] = helper.emptyOrRows(rows);
+  }
+  return {
+    data
+  }
+}
 
 async function create(image){
 
@@ -70,6 +87,7 @@ async function remove(id){
 
 module.exports = {
   getImage,
+  getImageById,
   create, 
   //update,
   remove,

@@ -12,8 +12,6 @@ function AffichageImage(){
             .get("http://localhost:8080/Image")
             .then(res => setImages(res.data.data));
      }, []);
-     console.log(Images);
-
      return(
         Images.map(Image => <div key={Image.id} id={Image.id} className='Contenu'>
                 <h3>{Image.Nickname}</h3>
@@ -35,7 +33,7 @@ function AffichageImage(){
                         <PostComment/>  
                     </fieldset>
                 </div>
-            </div>)
+            </div> )
     );  
 }
 
