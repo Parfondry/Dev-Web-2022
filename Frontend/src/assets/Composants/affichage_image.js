@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import Comments from '../Composants/getComment';
 import PostComment from "./post_comment";
+import Likes from "./likes";
 
 function AffichageImage(){
     const [Images, setImages] = useState([]);
@@ -18,6 +19,7 @@ function AffichageImage(){
                 <h3>Pseudo id {Image.Nickname}</h3>
                 <img id='image' src={Image.File} className="image-logo" alt="image" />
                 <div id='commentaires'>
+                    <Likes/>
                     <h5>Commentaires</h5>
                     <fieldset>
                         <legend>Poster un commentaire</legend>
