@@ -1,34 +1,83 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import axios from "axios";
+import authHeader from "../services/auth-header";
 
-async function PostImage(e){
-    e.preventDefault();
-
-        let Image
-
-        console.log(e.target['Image'].value);
-        console.log(e.target['Iduser'].value);
-        console.log(e.target['Description'].value);
+let ProfilUser = [];
+async function recup() {
+    if (JSON.parse(localStorage.getItem("user")) !== null){
 
         await axios
-            .post("http://localhost:8080/Image", {File:e.target['Image'].value, idUser:e.target['Iduser'].value,  Description:e.target['Description'].value});
-        console.log('ok');
-        if (Image.length != 0){
-            console.log(Image);
-        }
-
-        // let Reaction
-        // await axios
-        //     .post("http://localhost:8080/Reaction", {idUser:e.target['IdUser'].value, idImage:e.target['IdImage'].value,  React:e.target['React'].value});
-        // console.log('ok');
-        // if (Reaction.length != 0){
-        //     console.log(Reaction);
-        // }
-
-    // console.log(e.target['Image'].value);
+            .get("http://localhost:8080/User/test", {headers: authHeader()})
+            .then(
+                res => ProfilUser = res.data);
+        console.log(ProfilUser);
+        return ProfilUser;
+    }
 }
 
+recup();
+
+let IdUser;
+
+let Profil = [];
+
+
+
 function UploadImage(){
+    const [Profil, setProfil] = useState([]);
+    useEffect(() => {
+        axios
+            .get("http://localhost:8080/User/pseudo/" + ProfilUser.Nickname)
+            .then(
+                res => setProfil(res.data.data));
+    }, []);
+    if (JSON.parse(localStorage.getItem("user")) !== null){
+        if (ProfilUser.length !== 0){
+            if (Profil.length !== 0){
+                console.log(Profil);
+                IdUser = Profil[0].id;
+            }
+        }
+    }
+    async function PostImage(e){
+        e.preventDefault();
+        //GetProfil();
+        let Image
+    
+        console.log(e.target['Image'].value);
+        //console.log(e.target['Iduser'].value);
+        console.log(e.target['Description'].value);
+        console.log(IdUser);
+        if (JSON.parse(localStorage.getItem("user")) !== null){
+            console.log("ok1");
+            if (ProfilUser.length !== 0 ){
+                console.log("ok2");
+                if (Profil.length !== 0){
+                    //ne vient pas ici 
+                    console.log("ok3");
+                    if (IdUser){
+                        console.log('ok');
+                        await axios
+                            .post("http://localhost:8080/Image", {File:e.target['Image'].value, idUser:IdUser,  Description:e.target['Description'].value});
+                        console.log('ok');
+                        /*if (Image.length != 0){
+                            console.log(Image);
+                        }*/
+                    }
+                }
+            }
+        }
+    
+            // let Reaction
+            // await axios
+            //     .post("http://localhost:8080/Reaction", {idUser:e.target['IdUser'].value, idImage:e.target['IdImage'].value,  React:e.target['React'].value});
+            // console.log('ok');
+            // if (Reaction.length != 0){
+            //     console.log(Reaction);
+            // }
+    
+        // console.log(e.target['Image'].value);
+    }
     return(
         <div>
             <form onSubmit={PostImage}>
