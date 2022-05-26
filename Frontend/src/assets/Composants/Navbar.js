@@ -85,8 +85,8 @@ import axios from 'axios';
                   <div>
                       <NavLink to={"/"}><img id='Logo' src={logo} className="Navbar-logo" alt="logo" /></NavLink>
                   </div>
-
                   <div className="search-box">
+                      <Button id="Ajout" variant='dark'><NavLink to={"/image"}>Poster une Image</NavLink></Button>
                       <form id='searching' onSubmit={Recherche}>
                           <button className="btn-search"><img id='Loupe' alt='Loupe searchbar' src={loupe}/></button>
                           <input name='searchBar' type="text" className="input-search" placeholder="Recherche..."/>
