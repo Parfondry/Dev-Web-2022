@@ -3,38 +3,6 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
-    async function GetNickname(password, nickname){
-        //const [User, setUser] =  useState([]);
-        let message;
-        let User;
-        /*useEffect(() =>{
-            axios
-                .get("http://localhost:8080/user:nickname")
-                .then(res => setUser(res.data.data));
-        }, []);*/
-        /*await axios
-            .get("http://localhost:8080/user/" + nickname)
-            .then(res => User = res.data.data)
-        if (User !== undefined){
-
-            if (User.length === 0){
-                message = "Cet utilisateur n'existe pas !";
-            }
-            else if(User[0].PWD !== password){
-                message = "Mot de pase incorect !";
-            }
-            else {
-                user.connected = true;
-                user.user_id = User[0].id;
-                message = "Connecté !"
-                console.log(user);
-            }
-        }*/ 
-        
-        console.log(message);
-    }
-
-
   function ConnexionC(){
       let navigate = useNavigate();
       function handleSubmit(e) {
