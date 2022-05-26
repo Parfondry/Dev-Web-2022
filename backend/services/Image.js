@@ -7,15 +7,13 @@ async function getImage(page = 1){
   const rows = await db.query(
     `SELECT Image.id, User.Nickname, Image.File, Image.Description
     FROM Image
-    JOIN User ON Image.idUser = User.id
-    LIMIT ${offset},${config.listPerPage}`
+    JOIN User ON Image.idUser = User.id`
   );
   const data = helper.emptyOrRows(rows);
   const meta = {page};
 
   return {
-    data,
-    meta
+    data
   }
 }
 async function getImageById(id){
