@@ -60,7 +60,7 @@ function GetProfil(){
                     <div>
                         <img id="PhotoProfil" src={imageProfile} alt={'ProfilPicture'} height={'250px'} width={'250px'}></img>
                         <form id="MonProfil" onSubmit={ModifProfil}>
-                            <label id={test-NickName}>Nom : {Profil[0].Nickname}</label>
+                            <label>Nom : {Profil[0].Nickname}</label>
                             <button onClick={(e) => {e.preventDefault(); setShow(currentShow => !currentShow)}}>Modifier</button><br/>
                             { currentShow ? 
                                 <div>
@@ -69,12 +69,12 @@ function GetProfil(){
                                 </div>
                              : null }
                             
-                            <label id={test-Mail}>E-mail : {Profil[0].Mail}</label>
+                            <label>E-mail : {Profil[0].Mail}</label>
                             <button onClick={(e) => {e.preventDefault(); setShow2(currentShow2 => !currentShow2)}}>Modifier</button><br/>
                             { currentShow2 ? 
                                 <div>
                                     <label name={'newMail'} >Nouveau Mail : </label>
-                                    <input name={'newMail'} type={'text'} placeholder='example@email.com'></input>
+                                    <input name={'newMail'} type={'text'} placeholder='example@email.com'/>
                                 </div>
                              : null }
                             
@@ -83,16 +83,16 @@ function GetProfil(){
                             { currentShow3 ? 
                                 <div>
                                     <label name={'newMdp'} >Nouveau mdp : </label>
-                                    <input name={'newMdp'} type={'password'} placeholder='mdp'></input>
+                                    <input name={'newMdp'} type={'password'} placeholder='mdp'/>
                                 </div>
                              : null }
                            
-                            <label id={test-Birth}>Date de naissances : {Profil[0].Birth}</label>
+                            <label>Date de naissances : {Profil[0].Birth}</label>
                             <button onClick={(e) => {e.preventDefault(); setShow4(currentShow4 => !currentShow4)}}>Modifier</button><br/>
                             { currentShow4 ? 
                                 <div>
                                     <label name={'newDate'} >Nouvelle date : </label>
-                                    <input name={'newDate'} type={'date'}></input>
+                                    <input name={'newDate'} type={'date'}/>
                                 </div>
                              : null }
                             { (currentShow || currentShow2 || currentShow3 || currentShow4) ? <input type="submit" value="Send"/> : null}
