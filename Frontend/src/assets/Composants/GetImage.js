@@ -2,13 +2,13 @@ const {useEffect, useState} =  require("react");
 const axios = require("axios");
 
 function Fetchdata(){
-    const [Images, setImages] = useState([]);
+    const [images, setImages] = useState([]);
     useEffect(() => {
         axios
             .get("http://localhost:8080/Image")
             .then(res => setImages(res.data.data));
     }, []);
-    return Images;
+    return images;
 }
 
 exports.Fetchdata= Fetchdata;

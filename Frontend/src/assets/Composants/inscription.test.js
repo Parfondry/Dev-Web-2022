@@ -59,3 +59,4 @@ test("chek unvalid inscription with an invalid email", () => {
 test("chek unvalid inscription with an invalid email", () => {
   expect(inscr.verify("louis", "password_secret", "@", "12/05/2004")).toBe(false)
 });
+

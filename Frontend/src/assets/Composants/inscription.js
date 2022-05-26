@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import '../CSS/Contenu.css';
-import axios from "axios";
 import { useNavigate } from 'react-router';
 
 
@@ -26,12 +25,12 @@ import { useNavigate } from 'react-router';
             return true;
         }
       }
+
     function InscriptioncC(){
       let navigate = useNavigate();
       
       function handleSubmit(e) {
         e.preventDefault();
-        var self = this;
         if (verify(e.target['pseudo'].value, e.target['mdp'].value, e.target['Mail'].value, e.target['Birth'].value)){
 
             fetch('http://localhost:8080/user', {
@@ -49,20 +48,21 @@ import { useNavigate } from 'react-router';
                 });
         }
     }
+
         return(
             <div>
                 <form id="Inscription" onSubmit={handleSubmit}>
                     <fieldset>
                     <legend>Inscription</legend>
                     <label>Pseudo: </label>
-                    <input type="text" name="pseudo" placeholder='Pseudo'></input><br></br>
+                    <input type="text" name="pseudo" placeholder='Pseudo'/><br></br>
                     <label>Mot de passe: </label>
-                    <input type="password" name="mdp" placeholder='mot de passe'></input><br></br>
+                    <input type="password" name="mdp" placeholder='mot de passe'/><br></br>
                     <label>Addresse mail: </label>
-                    <input type="text" name="Mail" placeholder='Mail'></input><br></br>
+                    <input type="text" name="Mail" placeholder='Mail'/><br></br>
                     <label>Date de naissance: </label>
-                    <input type="text" name="Birth" placeholder='naissance'></input><br></br>
-                    <input type="submit" value="Envoyer en DB"></input>
+                    <input type="text" name="Birth" placeholder='naissance'/><br></br>
+                    <input type="submit" value="Envoyer en DB"/>
                 </fieldset>
             </form>
         </div>

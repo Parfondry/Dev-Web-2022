@@ -1,8 +1,8 @@
 const {Fetchdata} = require('./GetImage2');
 
 function AffichageImage(){
-    let Images = Fetchdata();
-    return(Images);
+    let images = Fetchdata();
+    return(images);
 }
 
 exports.AffichageImage = AffichageImage;
