@@ -15,7 +15,6 @@ router.get('/', async function(req, res, next) {
 /* GET images by id. */
 router.get('/:id', async function(req, res, next) {
   try {
-    console.log(req.params.id)
     res.json(await Images.getImageById(req.params.id));
   } catch (err) {
     console.error(`Error while getting images `, err.message);

@@ -8,9 +8,6 @@ import { useNavigate } from 'react-router';
         await axios
             .get("http://localhost:8080/user")
             .then(res => Users = res.data.data);
-        if (Users.length != 0){
-            console.log(Users);
-        }
         return (<div>{Users.length !=0 && Users.map(user => <li id={user.id} key={user.id}>{user.nickname}</li>)}</div>);
     }
 
@@ -47,7 +44,6 @@ import { useNavigate } from 'react-router';
                     <input type="text" name="Mail" placeholder='Mail'></input><br></br>
                     <label>Date de naissance: </label>
                     <input type="text" name="Birth" placeholder='naissance'></input><br></br>
-
                     <input type="submit" value="Envoyer en DB"></input>
                 </fieldset>
             </form>

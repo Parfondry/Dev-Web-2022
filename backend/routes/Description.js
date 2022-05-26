@@ -17,8 +17,6 @@ router.get('/', async function(req, res, next) {
 router.get('/:tag', async function(req, res, next) {
     try {//prob: ne vient pas ici
         res.json(await Images.getDescByTags(req.params.tag));
-        console.log('ok1');
-        console.log(req.params);
     } catch (err){
         console.error(`Error while getting users `, err.message);
         next(err);

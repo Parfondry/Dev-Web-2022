@@ -14,7 +14,6 @@ async function recup() {
             .get("http://localhost:8080/User/test", {headers: authHeader()})
             .then(
                 res => ProfilUser = res.data);
-        console.log(ProfilUser);
         return ProfilUser;
     }
 }

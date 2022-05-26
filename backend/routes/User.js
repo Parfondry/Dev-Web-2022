@@ -11,9 +11,7 @@ require("dotenv").config();
 /* GET users. */
 router.get('/', async function(req, res, next) {
   try {
-    console.log(req.params);
     res.json(await User.getUser(req.query.page));
-    //console.log('ok');
   } catch (err) {
     console.error(`Error while getting users `, err.message);
     next(err);
@@ -22,10 +20,8 @@ router.get('/', async function(req, res, next) {
 
 /*GET user by nickname.*/
 router.get('/pseudo/:nickname', async function(req, res, next) {
-  try {//prob: ne vient pas ici
+  try {
     res.json(await User.getUserByNickname(req.params.nickname));
-    console.log('ok1');
-    console.log(req.params);
   } catch (err){
     console.error(`Error while getting users `, err.message);
     next(err);
@@ -34,8 +30,6 @@ router.get('/pseudo/:nickname', async function(req, res, next) {
 
 
 router.get("/test", authToken, (req, res) =>{
-  console.log("ok")
-  console.log(req.user);
   res.json({Nickname: req.user});
 });
 
@@ -45,14 +39,10 @@ router.post('/login', async function(req, res, next) {
 
     let users = await User.getUser();
     users = users.data
-    console.log(PWD);
     let user = users.find((user) => {
       return user.Nickname === nickname;
     });
 
-    console.log(user);
-    console.log(PWD);
-    console.log(user.PWD);
     if (!user){
       return res.status(400)
         .json({
@@ -62,7 +52,6 @@ router.post('/login', async function(req, res, next) {
 
     //comparer mdp
     let isMatch = await bcrypt.compare(PWD, user.PWD); //problème: renvoit toujours false
-    console.log(isMatch);
 
     if (!isMatch) {
         return res.status(401).json({
@@ -92,11 +81,8 @@ router.post('/login', async function(req, res, next) {
 /* POST user */
 router.post('/', async function(req, res, next) {
   try {
-    //console.log(req.body.PWD);
     const password = req.body.PWD;
     const nickname = req.body.nickname;
-    console.log(password);
-    //console.log((await User.getUserByNickname(req.body.nickname)).data.length)
 
     //Vérifier si le pseudo n'existe pas déjà
     if ((await User.getUserByNickname(req.body.nickname)).data.length == 0){
@@ -138,20 +124,7 @@ router.post('/', async function(req, res, next) {
 /* PUT user */
 router.put('/:id', async function(req, res, next) {
   try {
-    //console.log(req.params.id, req.body);
     res.json(await User.update(req.params.id, req.body));
-    /*
-    const nickname = req.body.nickname;
-    const accessToken = await JWT.sign(
-        {nickname},
-        process.env.ACCESS_TOKEN_SECRET,
-        {
-          expiresIn: "24h",
-        }
-    );
-    res.json({
-      accessToken,
-    });*/
   } catch (err) {
     console.error(`Error while updating user`, err.message);
     next(err);

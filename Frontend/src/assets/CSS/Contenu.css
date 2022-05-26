@@ -69,7 +69,7 @@ h1,h2,h3,h4,h5,h6{
     display: block;
     margin: auto;
 }
-#MonProfil input[type=text], #MonProfil input[type=password], #MonProfil label{
+#MonProfil input[type=text], #MonProfil input[type=password], #MonProfil input[type=date], #MonProfil input[type=submit],#MonProfil label{
     border-radius: 5px;
     text-align: center;
     display: block;
