@@ -1,10 +1,10 @@
 const config = {
     db: {
       /* don't expose password or any sensitive info, done only for demo */
-      host: "db4free.net",
+      host: "neoart.wstr.fr",
       user: "louislombaert",
-      password: "password",
-      database: "neoart",
+      password: "Issou_2014",
+      database: "Neoart",
     },
     listPerPage: 10,
   };

@@ -17,6 +17,19 @@ async function getUser(page = 1){
   }
 }
 
+async function getUserByNickname(user_nickname){
+  const rows = await db.query(
+    `SELECT *
+    FROM User
+    WHERE nickname='${user_nickname}'`
+  );
+  const data = helper.emptyOrRows(rows);
+
+  return {
+    data
+  }
+}
+
 async function create(user){
 
   const result = await db.query(
@@ -33,15 +46,14 @@ async function create(user){
 
   return {message};
 }
-
+/*PWD=${user.PWD}, */
 async function update(id, user){
   const result = await db.query(
     `UPDATE User 
-    SET nickname="${user.nickname}", PWD=${user.PWD}, Mail=${user.Mail}, 
-    Birth=${user.Birth}
-    WHERE id=${id}` 
+    SET Nickname='${user.nickname}', Mail='${user.Mail}',
+    Birth='${user.Birth}'
+    WHERE id=${id}`
   );
-
   let message = 'Error in updating user';
 
   if (result.affectedRows) {
@@ -51,9 +63,9 @@ async function update(id, user){
   return {message};
 }
 
-async function remove(id){
+async function remove(nickname){
   const result = await db.query(
-    `DELETE FROM User WHERE id=${id}`
+    `DELETE FROM User WHERE nickname='${nickname}'`
   );
 
   let message = 'Error in deleting programming language';
@@ -68,6 +80,7 @@ async function remove(id){
 
 module.exports = {
   getUser,
+  getUserByNickname,
   create, 
   update,
   remove,
