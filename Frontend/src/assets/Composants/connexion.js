@@ -46,13 +46,7 @@ import { useNavigate } from 'react-router-dom';
               headers: {'Content-type': 'application/json'},
               body: JSON.stringify({nickname: nickname, PWD: password})
           })
-              /*.then((response) =>  {
-                  if(response.json().accessToken){
-                      localStorage.setItem("user", JSON.stringify(response.json()));
-                  }
-                  console.log(response.json().accessToken);
-                  return response.json();
-              })*/
+              
               .then(response => response.json())
               .then(function(body){
                   console.log("body: ", body);
@@ -62,11 +56,6 @@ import { useNavigate } from 'react-router-dom';
                   navigate('/');
                   window.location.reload();
               });
-          //GetNickname(password, nickname);
-          //console.log(user);
-          //return user;
-          //return (<div>{Users.length !=0 && Users.map(user => <li id={user.id} nikey={user.id}>{user.nickname}</li>)}</div>);
-          // empty dependency array means this effect will only run once (like componentDidMount in classes)
       }
     return(
         <div>

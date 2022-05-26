@@ -11,7 +11,6 @@ async function recup() {
             .get("http://localhost:8080/User/test", {headers: authHeader()})
             .then(
                 res => ProfilUser = res.data);
-      //  console.log(ProfilUser);
         return ProfilUser;
     }
 }
@@ -39,14 +38,10 @@ function PostComment(prop){
             .get("http://localhost:8080/Image")
             .then(res => setImages(res.data.data));
      }, []);
-     if(Images.length !== 0){
-      //  console.log(Images[2].id);
-     }
 
     if (JSON.parse(localStorage.getItem("user")) !== null){
         if (ProfilUser.length !== 0){
             if (Profil.length !== 0){
-                // console.log(Profil);
                 IdUser = Profil[0].id;
             }
         }
@@ -59,14 +54,9 @@ function PostComment(prop){
         if (JSON.parse(localStorage.getItem("user")) !== null){
             if (ProfilUser.length !== 0 ){
                 if (Profil.length !== 0){
-                    //ne vient pas ici 
-                    console.log("ok3");
                     if (IdUser){
                         await axios
                         .post("http://localhost:8080/Comment", {idUser:IdUser, idImage:e.target['ImgId'].id, Comment:e.target['NewComment'].value});
-
-
-                        console.log('ok');
                     }
                 }
             }

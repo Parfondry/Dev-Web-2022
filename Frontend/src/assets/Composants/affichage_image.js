@@ -15,7 +15,6 @@ export function AffichageImage(){
      return(
         Images.map(Image => <div key={Image.id} id={Image.id} className='Contenu'>
                 <h3>{Image.Nickname}</h3>
-                <h6>Identifiant de l'image: {Image.id}</h6>
                 <img id='image' src={Image.File} className="image-logo" alt="image" />
                 <div id='commentaires'>
                     <Likes/>

@@ -10,7 +10,6 @@ async function recup() {
             .get("http://localhost:8080/User/test", {headers: authHeader()})
             .then(
                 res => ProfilUser = res.data);
-        console.log(ProfilUser);
         return ProfilUser;
     }
 }
@@ -30,46 +29,39 @@ function UploadImage(){
     if (JSON.parse(localStorage.getItem("user")) !== null){
         if (ProfilUser.length !== 0){
             if (Profil.length !== 0){
-               // console.log(Profil);
                 IdUser = Profil[0].id;
             }
         }
     }
     async function PostImage(e){
         e.preventDefault();
-        //GetProfil();
         let Image
     
-        console.log(e.target['Image'].value);
-        //console.log(e.target['Iduser'].value);
-        console.log(e.target['Description'].value);
-        console.log(IdUser);
         if (JSON.parse(localStorage.getItem("user")) !== null){
-            console.log("ok1");
             if (ProfilUser.length !== 0 ){
-                console.log("ok2");
                 if (Profil.length !== 0){
-                    //ne vient pas ici 
-                    console.log("ok3");
                     if (IdUser){
-                        console.log('ok');
-                        await axios
-                            .post("http://localhost:8080/Image", {File:e.target['Image'].value, idUser:IdUser,  Description:e.target['Description'].value});
-                        console.log('ok');
-                        /*if (Image.length != 0){
-                            console.log(Image);
-                        }*/
+                        if(document.getElementById("LienImage").value == "" || document.getElementById("DescImage").value == ""){
+                            alert("Remplissez les champs pour poster une image");
+                        }
+                        else{
+                            await axios
+                                .post("http://localhost:8080/Image", {File:e.target['Image'].value, idUser:IdUser,  Description:e.target['Description'].value});
+                        }
                     }
                 }
             }
+        }
+        else{
+            alert("Connectez vous pour ajouter une image");
         }
     
     }
     return(
         <div>
             <form id="UploadImage" onSubmit={PostImage}>
-                <input type="text" name="Image" placeholder="Lien de l'image"></input>
-                <input type="text" name="Description" placeholder="Description"></input>
+                <input id="LienImage" type="text" name="Image" placeholder="Lien de l'image"></input>
+                <input id="DescImage" type="text" name="Description" placeholder="Description"></input>
 
                 <input type="submit" value="Poster cette photo"></input>
             </form>

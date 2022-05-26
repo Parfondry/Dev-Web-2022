@@ -13,7 +13,6 @@ async function recup() {
             .get("http://localhost:8080/User/test", {headers: authHeader()})
             .then(
                 res => ProfilUser = res.data);
-        console.log(ProfilUser.Nickname);
         return ProfilUser;
     }
 }
@@ -24,17 +23,12 @@ function DeleteC(){
     let navigate = useNavigate();
     function handleSubmit(e) {
         e.preventDefault();
-        /*const[user, setUser] = useState([]);
 
-        useEffect(() => {
-            axios()
-        })*/
         fetch("http://localhost:8080/User/" + ProfilUser.Nickname, {
             method: 'DELETE',
         })
         .then(res => res.json())
         .then(function(res){
-                console.log(res);
                 localStorage.setItem("user", null);
                 navigate('/');
                 window.location.reload();
