@@ -1,8 +1,26 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import authHeader from "../services/auth-header";
-import * as affData from '../Composants/affichage_image';
+//import * as affData from '../Composants/affichage_image';
 
+
+function verifyComment(comment){
+    if (comment == ""){
+        alert("all the input must be comleted !");
+        return false;
+    }
+    else if (comment.length < 1){
+        alert("the text must be at least 1 caracters long !");
+        return false;
+    }
+    else if (comment.length > 20){
+        alert("the text cannot exceed 20 caracters long !");
+        return false;
+    }
+    else{
+        return true;
+    }
+}
 let ProfilUser = [];
 async function recup() {
     if (JSON.parse(localStorage.getItem("user")) !== null){
@@ -77,3 +95,4 @@ function PostComment(prop){
 }
 
 export default PostComment;
+export {verifyComment}

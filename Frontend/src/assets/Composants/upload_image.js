@@ -2,6 +2,30 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import authHeader from "../services/auth-header";
 
+
+function verifyUploadImage(Image, Description){
+    if (Image == "" || Description == ""){
+      alert("all the input must be comleted !");
+      return false;
+    }
+    else if (Image.length < 10){
+        alert("the link must be at least 10 caracters long !");
+        return false;
+    }
+    else if (Image.length > 50){
+      alert("the link cannot exceed 50 caracters long !");
+      return false;
+    }
+    else if(Description > 100){
+      alert("description cannot exceed 100 caracteres long !");
+      return false 
+    }
+    else{
+        return true;
+    }
+  }
+
+
 let ProfilUser = [];
 async function recup() {
     if (JSON.parse(localStorage.getItem("user")) !== null){
@@ -70,3 +94,4 @@ function UploadImage(){
 }
 
 export default UploadImage;
+export {verifyUploadImage};
