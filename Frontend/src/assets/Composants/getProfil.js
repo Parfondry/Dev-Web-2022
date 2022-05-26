@@ -4,15 +4,15 @@ import imageProfile from '../images/default.png';
 import '../CSS/Navbar.css';
 import authHeader from "../services/auth-header";
 
-let ProfilUser = [];
+let profilUser = [];
 async function recup() {
     if (JSON.parse(localStorage.getItem("user")) !== null){
 
         await axios
             .get("http://localhost:8080/User/test", {headers: authHeader()})
             .then(
-                res => ProfilUser = res.data);
-        return ProfilUser;
+                res => profilUser = res.data);
+        return profilUser;
     }
 }
 
@@ -24,17 +24,17 @@ function GetProfil(){
     const [currentShow3, setShow3] = useState(false);
     const [currentShow4, setShow4] = useState(false);
 
-    const [Profil, setProfil] = useState([]);
+    const [profil, setProfil] = useState([]);
     useEffect(() => {
         axios
-            .get("http://localhost:8080/User/pseudo/" + ProfilUser.Nickname)
+            .get("http://localhost:8080/User/pseudo/" + profilUser.Nickname)
             .then(
                 res => setProfil(res.data.data));
     }, []);
 
     function ModifProfil(e){
         e.preventDefault();
-        let Name = Profil[0].Nickname,pass = Profil[0].PWD,addMail = Profil[0].Mail ,addbirth = Profil[0].Birth;
+        let Name = profil[0].Nickname,pass = profil[0].PWD,addMail = profil[0].Mail ,addbirth = profil[0].Birth;
         if (e.target['newName'] !== undefined && e.target['newName'] !== ''){
             Name = e.target['newName'].value;
         }
@@ -48,36 +48,30 @@ function GetProfil(){
             addbirth = e.target['newDate'].value;
         }
         axios
-            .put('http://localhost:8080/User/'+Profil[0].id , {nickname: Name,
+            .put('http://localhost:8080/User/'+profil[0].id , {nickname: Name,
                 Mail: addMail, Birth:  addbirth})
             .then(res => console.log(res));
     }
 
     if (JSON.parse(localStorage.getItem("user")) !== null){
-        if (ProfilUser.length !== 0){
-            if (Profil.length !== 0){
+        if (profilUser.length !== 0){
+            if (profil.length !== 0){
                 return (
                     <div>
-                        <img id="PhotoProfil" src={imageProfile} alt={'ProfilPicture'} height={'250px'} width={'250px'}></img>
+                        <img id="PhotoProfil" src={imageProfile} alt={'ProfilPicture'} height={'250px'} width={'250px'}/>
                         <form id="MonProfil" onSubmit={ModifProfil}>
 
-                            <label >Nom : {Profil[0].Nickname}</label>
-
-                            <label>Nom : {Profil[0].Nickname}</label>
+                            <label>Nom : {profil[0].Nickname}</label>
 
                             <button onClick={(e) => {e.preventDefault(); setShow(currentShow => !currentShow)}}>Modifier</button><br/>
                             { currentShow ? 
                                 <div>
                                     <label name={'newName'} >Nouveau nom : </label>
-                                    <input name={'newName'} type={'text'} placeholder='Nom'></input>
+                                    <input name={'newName'} type={'text'} placeholder='Nom'/>
                                 </div>
                              : null }
 
-
-                            <label >E-mail : {Profil[0].Mail}</label>
-
-                            
-                            <label>E-mail : {Profil[0].Mail}</label>
+                            <label>E-mail : {profil[0].Mail}</label>
 
                             <button onClick={(e) => {e.preventDefault(); setShow2(currentShow2 => !currentShow2)}}>Modifier</button><br/>
                             { currentShow2 ? 
@@ -97,9 +91,7 @@ function GetProfil(){
                              : null }
                            
 
-                            <label >Date de naissances : {Profil[0].Birth}</label>
-
-                            <label>Date de naissances : {Profil[0].Birth}</label>
+                            <label>Date de naissances : {profil[0].Birth}</label>
 
                             <button onClick={(e) => {e.preventDefault(); setShow4(currentShow4 => !currentShow4)}}>Modifier</button><br/>
                             { currentShow4 ? 

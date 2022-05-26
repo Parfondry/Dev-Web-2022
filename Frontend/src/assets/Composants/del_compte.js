@@ -1,19 +1,19 @@
 import '../CSS/Contenu.css';
-import React, {useState, useEffect} from "react";
+import React from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import authHeader from "../services/auth-header";
 
 
-let ProfilUser = [];
+let profilUser = [];
 async function recup() {
     if (JSON.parse(localStorage.getItem("user")) !== null){
 
         await axios
             .get("http://localhost:8080/User/test", {headers: authHeader()})
             .then(
-                res => ProfilUser = res.data);
-        return ProfilUser;
+                res => profilUser = res.data);
+        return profilUser;
     }
 }
 
@@ -24,11 +24,11 @@ function DeleteC(){
     function handleSubmit(e) {
         e.preventDefault();
 
-        fetch("http://localhost:8080/User/" + ProfilUser.Nickname, {
+        fetch("http://localhost:8080/User/" + profilUser.Nickname, {
             method: 'DELETE',
         })
         .then(res => res.json())
-        .then(function(res){
+        .then(function(){
                 localStorage.setItem("user", null);
                 navigate('/');
                 window.location.reload();
@@ -41,7 +41,7 @@ function DeleteC(){
         <div>
             <form onSubmit={handleSubmit}>
                 <fieldset><legend>Voulez vous vraiment supprimer votre compte ?</legend>
-                    <input type="submit" value="Supprimer le compte"></input>
+                    <input type="submit" value="Supprimer le compte"/>
                 </fieldset>
             </form>
         </div>

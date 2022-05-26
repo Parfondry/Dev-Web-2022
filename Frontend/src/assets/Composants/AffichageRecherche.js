@@ -6,22 +6,22 @@ import PostComment from "./post_comment";
 import Likes from "./likes";
 
 function AffichageImage2(){
-    const [Images, setImages] = useState([]);
+    const [images, setImages] = useState([]);
     useEffect(() => {
         axios
-            .get("http://localhost:8080/Image/"+dataNav.ImgId)
+            .get("http://localhost:8080/Image/"+dataNav.imgId)
             .then(res => setImages(res.data.data));
     }, []);
     return(
-        Images.length !=0 && Images.map(Image => <div key={Image[0].id} id={Image[0].id} className='Contenu'>
-            <h3>{Image[0].Nickname}</h3>
-            <img id='image' src={Image[0].File} className="image-logo" alt="image" />
+        images.length !==0 && images.map(image => <div key={image[0].id} id={image[0].id} className='Contenu'>
+            <h3>{image[0].Nickname}</h3>
+            <img id='image' src={image[0].File} className="image-logo" alt="image" />
             <div id='commentaires'>
                 <Likes/>
                 <h5>Commentaires</h5>
                 <fieldset>
                     <legend>Description de l'image</legend>
-                    <p>{Image[0].Description}</p>
+                    <p>{image[0].Description}</p>
                 </fieldset>
                 <fieldset>
                     <legend>Commentaires</legend>

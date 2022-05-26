@@ -6,35 +6,35 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
-let ProfilUser = [];
+let profilUser = [];
 async function recup() {
     if (JSON.parse(localStorage.getItem("user")) !== null){
 
         await axios
             .get("http://localhost:8080/User/test", {headers: authHeader()})
             .then(
-                res => ProfilUser = res.data);
-        return ProfilUser;
+                res => profilUser = res.data);
+        return profilUser;
     }
 }
 
 recup();
 
-let IdUser;
+let idUser;
 
 function Likes (){
 
-    const [Profil, setProfil] = useState([]);
+    const [profil, setProfil] = useState([]);
     useEffect(() => {
         axios
-            .get("http://localhost:8080/User/pseudo/" + ProfilUser.Nickname)
+            .get("http://localhost:8080/User/pseudo/" + profilUser.Nickname)
             .then(
                 res => setProfil(res.data.data));
     }, []);
     if (JSON.parse(localStorage.getItem("user")) !== null){
-        if (ProfilUser.length !== 0){
-            if (Profil.length !== 0){
-                IdUser = Profil[0].id;
+        if (profilUser.length !== 0){
+            if (profil.length !== 0){
+                idUser = profil[0].id;
             }
         }
     }

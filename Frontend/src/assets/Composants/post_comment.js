@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import authHeader from "../services/auth-header";
+
 //import * as affData from '../Composants/affichage_image';
 
 
@@ -21,31 +22,30 @@ function verifyComment(comment){
         return true;
     }
 }
-let ProfilUser = [];
+
+
+let profilUser = [];
+
 async function recup() {
     if (JSON.parse(localStorage.getItem("user")) !== null){
 
         await axios
             .get("http://localhost:8080/User/test", {headers: authHeader()})
             .then(
-                res => ProfilUser = res.data);
-        return ProfilUser;
+                res => profilUser = res.data);
+        return profilUser;
     }
 }
 
 recup();
 
-let IdUser;
-
-let Profil = [];
-
-
+let idUser;
 
 function PostComment(prop){
-    const [Profil, setProfil] = useState([]);
+    const [profil, setProfil] = useState([]);
     useEffect(() => {
         axios
-            .get("http://localhost:8080/User/pseudo/" + ProfilUser.Nickname)
+            .get("http://localhost:8080/User/pseudo/" + profilUser.Nickname)
             .then(
                 res => setProfil(res.data.data));
     }, []);
@@ -58,9 +58,9 @@ function PostComment(prop){
      }, []);
 
     if (JSON.parse(localStorage.getItem("user")) !== null){
-        if (ProfilUser.length !== 0){
-            if (Profil.length !== 0){
-                IdUser = Profil[0].id;
+        if (profilUser.length !== 0){
+            if (profil.length !== 0){
+                idUser = profil[0].id;
             }
         }
     }
@@ -70,11 +70,11 @@ function PostComment(prop){
 
 
         if (JSON.parse(localStorage.getItem("user")) !== null){
-            if (ProfilUser.length !== 0 ){
-                if (Profil.length !== 0){
-                    if (IdUser){
+            if (profilUser.length !== 0 ){
+                if (profil.length !== 0){
+                    if (idUser){
                         await axios
-                        .post("http://localhost:8080/Comment", {idUser:IdUser, idImage:e.target['ImgId'].id, Comment:e.target['NewComment'].value});
+                        .post("http://localhost:8080/Comment", {idUser:idUser, idImage:e.target['ImgId'].id, Comment:e.target['NewComment'].value});
                     }
                 }
             }
@@ -87,8 +87,8 @@ function PostComment(prop){
     return(
         <div>
             <form id="PostComment" onSubmit={PostMyComment}>
-                <textarea name="NewComment"></textarea>
-                <input id={prop.data} name="ImgId" type="submit" value="Poster ce commentaire"></input>
+                <textarea name="NewComment"/>
+                <input id={prop.data} name="ImgId" type="submit" value="Poster ce commentaire"/>
             </form>
         </div>
     );

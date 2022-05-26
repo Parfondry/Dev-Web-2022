@@ -1,7 +1,7 @@
 import "../CSS/footer.css";
 import React from "react";
 
-function contenueContact(){
+function ContenueContact(){
     return(
         <div>
             <p>Contact : 04XXXXXXXX</p>
@@ -10,4 +10,4 @@ function contenueContact(){
     );
 }
 
-export default contenueContact;
+export default ContenueContact;

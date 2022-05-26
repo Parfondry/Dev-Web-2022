@@ -1,6 +1,5 @@
 import '../CSS/Contenu.css';
-import React, {useState, useEffect} from "react";
-import axios from "axios";
+import React from "react";
 import { useNavigate } from 'react-router-dom';
 
   function ConnexionC(){
@@ -25,16 +24,17 @@ import { useNavigate } from 'react-router-dom';
                   window.location.reload();
               });
       }
+
     return(
         <div>
             <form id="Connexion" onSubmit={handleSubmit}>
                 <fieldset><legend>Connexion</legend>
                     <label>Pseudo: </label>
-                    <input type="text" name="pseudo" placeholder='Pseudo'></input><br/>
+                    <input type="text" name="pseudo" placeholder='Pseudo'/><br/>
                     <label>Mot de passe: </label>
-                    <input type="password" name="mdp" placeholder='mot de passe'></input><br/>
+                    <input type="password" name="mdp" placeholder='mot de passe'/><br/>
 
-                    <input type="submit" value="Connexion"></input>
+                    <input type="submit" value="Connexion"/>
                 </fieldset>
             </form>
         </div>

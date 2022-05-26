@@ -5,7 +5,7 @@ import loupe from '../images/loupe.png';
 import { NavLink } from "react-router-dom";
 import axios from 'axios';
 
-    export let ImgId = [];
+    export let imgId = [];
     export let validate = false;
     async function Recherche(val){
         val.preventDefault();
@@ -28,8 +28,8 @@ import axios from 'axios';
                      let descri = Desc[i].Description.split(' ');
                      for (let k=0;k<descri.length;k++) {
                          if (mots.includes(descri[k])) {
-                             if (!ImgId.includes(Desc[i].id)){
-                                 ImgId[y] = Desc[i].id;
+                             if (!imgId.includes(Desc[i].id)){
+                                 imgId[y] = Desc[i].id;
                                  y++;
                              }
                          }
@@ -43,20 +43,21 @@ import axios from 'axios';
                      .then(res => DescTag = res.data.data);
                  if (DescTag.length !== 0) {
                      for (let i = 0; i < DescTag.length; i++) {
-                         if (!ImgId.includes(DescTag[i][0].idImage)) {
-                             ImgId[y] = DescTag[i][0].idImage;
+                         if (!imgId.includes(DescTag[i][0].idImage)) {
+                             imgId[y] = DescTag[i][0].idImage;
                              y++;
                          }
                      }
                  }
              }
-             return ImgId; // deuxieme fonction recupere et fait l'affichage
+             return imgId; // deuxieme fonction recupere et fait l'affichage
         }
     }
     function deconnexion(){
         localStorage.setItem("user", null);
         this.props.history.Push('/');
     }
+
   export function Navbar(){
       if (JSON.parse(localStorage.getItem("user")) === null){
     return(

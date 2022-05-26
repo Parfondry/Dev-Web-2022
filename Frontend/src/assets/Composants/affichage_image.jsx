@@ -4,25 +4,25 @@ import Likes from "./likes";
 import {Fetchdata} from './GetImage'
 
 export function AffichageImage(){
-    let Images = Fetchdata();
+    let images = Fetchdata();
      return(
-        Images.map(Image => <div key={Image.id} id={Image.id} className='Contenu'>
-                <h3>{Image.Nickname}</h3>
-                <img id='image' src={Image.File} className="image-logo" alt="image" />
+         images.map(image => <div key={image.id} id={image.id} className='Contenu'>
+                <h3>{image.Nickname}</h3>
+                <img id='image' src={image.File} className="image-logo" alt="image" />
                 <div id='commentaires'>
                     <Likes/>
                     <h5>Commentaires</h5>
                     <fieldset>
                         <legend>Description de l'image</legend>
-                        <p>{Image.Description}</p>
+                        <p>{image.Description}</p>
                     </fieldset>
                     <fieldset>
                      <legend>Commentaires</legend>
-                        <Comments data={Image.id}/>
+                        <Comments data={image.id}/>
                     </fieldset>
                     <fieldset>
                         <legend>Poster un commentaire</legend>
-                        <PostComment data={Image.id}/>
+                        <PostComment data={image.id}/>
                     </fieldset>
                 </div>
             </div> )

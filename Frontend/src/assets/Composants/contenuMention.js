@@ -1,7 +1,7 @@
 import "../CSS/footer.css";
 import React from "react";
 
-function contenueMention(){
+function ContenueMention(){
     return(
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mattis urna tincidunt ex gravida, non condimentum eros tincidunt. Morbi sollicitudin, massa in rutrum tincidunt, nibh eros porta sem, iaculis efficitur orci est in lacus. Sed lobortis ultrices nisl, id cursus nisi dictum vel. Praesent sollicitudin, neque nec condimentum fringilla, arcu nunc malesuada enim, ut faucibus tellus ipsum molestie sem. Vestibulum vitae rutrum metus. Duis lacinia tortor in odio cursus, id cursus ligula dignissim. Etiam bibendum nunc ac ex pretium, eu iaculis nibh volutpat. In ac ligula ac justo bibendum accumsan.
 
@@ -15,4 +15,4 @@ function contenueMention(){
     );
 }
 
-export default contenueMention;
+export default ContenueMention;
