@@ -4,7 +4,7 @@ import Comments from '../Composants/getComment';
 import PostComment from "./post_comment";
 import Likes from "./likes";
 
-function AffichageImage(){
+export function AffichageImage(){
     const [Images, setImages] = useState([]);
     let i = 0;
     useEffect(() => {
@@ -26,15 +26,13 @@ function AffichageImage(){
                     </fieldset>
                     <fieldset>
                      <legend>Commentaires</legend>
-                        <Comments/>
+                        <Comments data={Image.id}/>
                     </fieldset>
                     <fieldset>
                         <legend>Poster un commentaire</legend>
-                        <PostComment/>  
+                        <PostComment data={Image.id}/>
                     </fieldset>
                 </div>
             </div> )
     );  
 }
-
-export default AffichageImage;

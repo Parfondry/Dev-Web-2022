@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import Comments from '../Composants/getComment';
 import * as dataNav from '../Composants/Navbar';
+import PostComment from "./post_comment";
+import Likes from "./likes";
 
 function AffichageImage2(){
     const [Images, setImages] = useState([]);
@@ -15,10 +17,19 @@ function AffichageImage2(){
             <h3>{Image[0].Nickname}</h3>
             <img id='image' src={Image[0].File} className="image-logo" alt="image" />
             <div id='commentaires'>
+                <Likes/>
                 <h5>Commentaires</h5>
                 <fieldset>
-                    <legend>Pseudo utilisateur</legend>
+                    <legend>Description de l'image</legend>
+                    <p>{Image[0].Description}</p>
+                </fieldset>
+                <fieldset>
+                    <legend>Commentaires</legend>
                     <Comments/>
+                </fieldset>
+                <fieldset>
+                    <legend>Poster un commentaire</legend>
+                    <PostComment/>
                 </fieldset>
             </div>
         </div>)

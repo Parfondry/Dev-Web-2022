@@ -30,7 +30,7 @@ function UploadImage(){
     if (JSON.parse(localStorage.getItem("user")) !== null){
         if (ProfilUser.length !== 0){
             if (Profil.length !== 0){
-                console.log(Profil);
+               // console.log(Profil);
                 IdUser = Profil[0].id;
             }
         }

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import authHeader from "../services/auth-header";
+import * as affData from '../Composants/affichage_image';
 
 let ProfilUser = [];
 async function recup() {
@@ -10,7 +11,7 @@ async function recup() {
             .get("http://localhost:8080/User/test", {headers: authHeader()})
             .then(
                 res => ProfilUser = res.data);
-        console.log(ProfilUser);
+      //  console.log(ProfilUser);
         return ProfilUser;
     }
 }
@@ -23,7 +24,7 @@ let Profil = [];
 
 
 
-function PostComment(){
+function PostComment(prop){
     const [Profil, setProfil] = useState([]);
     useEffect(() => {
         axios
@@ -39,7 +40,7 @@ function PostComment(){
             .then(res => setImages(res.data.data));
      }, []);
      if(Images.length !== 0){
-        console.log(Images[2].id);
+      //  console.log(Images[2].id);
      }
 
     if (JSON.parse(localStorage.getItem("user")) !== null){
@@ -61,9 +62,10 @@ function PostComment(){
                     //ne vient pas ici 
                     console.log("ok3");
                     if (IdUser){
-
                         await axios
-                        .post("http://localhost:8080/Comment", {idUser:IdUser, idImage:e.target['IdImage'].value, Comment:e.target['NewComment'].value});
+                        .post("http://localhost:8080/Comment", {idUser:IdUser, idImage:e.target['ImgId'].id, Comment:e.target['NewComment'].value});
+
+
                         console.log('ok');
                     }
                 }
@@ -78,8 +80,7 @@ function PostComment(){
         <div>
             <form id="PostComment" onSubmit={PostMyComment}>
                 <textarea name="NewComment"></textarea>
-                <input type="text" name="IdImage" placeholder="Entrez identifiant image"></input>
-                <input type="submit" value="Poster ce commentaire"></input>
+                <input id={prop.data} name="ImgId" type="submit" value="Poster ce commentaire"></input>
             </form>
         </div>
     );

@@ -17,18 +17,16 @@ async function getComment(page = 1){
     }
 }
 
-async function getCommentImage(page = 1){
-    const offset = helper.getOffset(page, config.listPerPage);
+async function getCommentImage(comment){
     const rows = await db.query(
-        `SELECT *
-    FROM Comment JOIN User ON User.id = Comment.IdUser LIMIT ${offset},${config.listPerPage}`
+        `SELECT User.Nickname,Comment.Comment,Comment.id
+    FROM Comment JOIN User ON User.id = Comment.IdUser
+    WHERE Comment.idImage = '${comment}'`
     );
     const data = helper.emptyOrRows(rows);
-    const meta = {page};
 
     return {
-        data,
-        meta
+        data
     }
 }
 
